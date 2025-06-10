@@ -1,4 +1,4 @@
 import { setupWorker } from "msw/browser";
-import {mockMissions} from "./missions.ts";
-const handlers = [mockMissions()];
+import {mockEscapeSessionList} from "./escape.ts";
+const handlers = [mockEscapeSessionList()];
 export const worker = setupWorker(...handlers);

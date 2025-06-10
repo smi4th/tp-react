@@ -23,6 +23,7 @@ body * {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 1.5rem;
 }
 
 .mainNavBar {
@@ -93,6 +94,7 @@ body * {
 .contactLegalSection {
   text-align: left;
   gap: 1.5rem;
+  padding-right: 2rem;
 }
 
 /*# sourceMappingURL=layout.module.css.map */

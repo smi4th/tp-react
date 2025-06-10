@@ -1,5 +1,5 @@
 import React from "react";
-import type { escapeSession } from "../interfaces/escape.ts";
+import type { escapeSession } from "../../interfaces/escape.ts";
 import Rating from "./Rating.tsx";
 
 const Modal: React.FC<escapeSession> = (props) => {

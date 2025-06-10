@@ -1,5 +1,7 @@
 import {Link, Outlet, useLocation} from "react-router";
-import App from "../App.tsx";
+import NavBar from "./NavBar.tsx";
+import Footer from "./Footer.tsx";
+import styles from "./layout.module.css"
 
 export default function Layout() {
 
@@ -7,10 +9,10 @@ export default function Layout() {
 
     return (
         <>
-            <div>
-                <App />
+            <div className={styles.main}>
+                <NavBar />
                 <Outlet/>
-                <App />
+                <Footer />
             </div>
         </>
     );

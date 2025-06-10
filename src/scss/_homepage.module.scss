@@ -1,0 +1,57 @@
+$homepageBackgroundColor: #1a1a1a;
+
+.companyInfoCarousel {
+  display: flex;
+  background-color: $homepageBackgroundColor;
+  color: #ffffff;
+  height: 25%;
+  border-bottom: 10px solid #e28743;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  padding-bottom: 15px;
+  width: 120%;
+}
+
+.reserverButton {
+  position: relative;
+  left: 95px;
+}
+
+.MuiButton-colorPrimary {
+  color: #1a1a1a;
+  background-color: #e28743;
+}
+.companyInfoTitle {
+  font-weight: bold;
+}
+
+.missionsOverview {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ffffff;
+  background-color: $homepageBackgroundColor;
+}
+.itemUlMissions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: fit-content;
+  gap: 30px 30px;
+  padding: 0;
+}
+.itemLiMission {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  word-wrap: break-word;
+}
+.missionImgPreview {
+  width: 25rem
+}
+
+

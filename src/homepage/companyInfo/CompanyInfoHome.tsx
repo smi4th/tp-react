@@ -1,6 +1,7 @@
 import styles from "../home.module.css"
 import Button from '@mui/material/Button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Link } from "react-router";
 
 export default function CompanyInfoHome() {
     return (
@@ -18,7 +19,7 @@ export default function CompanyInfoHome() {
                     fontSize: '12px', fontWeight: 'bold'}}
                         className={styles.reserverButton}>
                     <CalendarMonthIcon/>
-                    RÉSERVER EN LIGNE
+                    <Link to="/reservation">RÉSERVER EN LIGNE</Link>
                 </Button>
             </div>
         </>

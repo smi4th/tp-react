@@ -1,5 +1,6 @@
 import styles from "./layout.module.css"
 import brandLogo from "../assets/logo.png"
+import { Link } from "react-router";
 
 export default function NavBar() {
     return (
@@ -10,7 +11,9 @@ export default function NavBar() {
                 <div className={styles.allTitles}>
                     <div className={styles.navBarTitles}>Toutes Missions</div>
                     <div className={styles.navBarTitles}>Contact</div>
-                    <div className={styles.navBarTitles}>Réserver</div>
+                    <div className={styles.navBarTitles}>
+                        <Link to="/reservation">Réserver</Link>
+                    </div>
                 </div>
             </div>
 

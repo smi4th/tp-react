@@ -1,0 +1,93 @@
+:root {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #1F1F1F;
+  font-size: 1.6rem;
+  background-color: #ffffff;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mainNavBar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #565a5c;
+  width: 100%;
+  height: 7rem;
+  border-bottom: 10px solid #e28743;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  width: 200px;
+  height: 160px;
+  bottom: -70px;
+  left: 55px;
+}
+
+.brandName {
+  color: #ffffff;
+  font-family: "Pirata One", "Brush Script MT", "Comic Sans MS", cursive;
+  padding-left: 25px;
+  font-size: 250%;
+}
+
+.allTitles {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+}
+
+.navBarTitles {
+  font-family: "Iceland", "Brush Script MT", "Comic Sans MS", sans-serif;
+  color: #ffffff;
+  font-size: 150%;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #565a5c;
+  width: 100%;
+  height: 5rem;
+}
+
+/*# sourceMappingURL=layout.module.css.map */

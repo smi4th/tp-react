@@ -9,8 +9,8 @@ export default [
         path: "/",
         children: [
             { path: "", element: <App /> },
-            { path: "reservation", element: <Reservation /> },
-            { path: "contact", element: <Contact /> }
+            { path: "/reservation", element: <Reservation /> },
+            { path: "/contact", element: <Contact /> }
         ]
     }
 ]

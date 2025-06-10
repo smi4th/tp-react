@@ -1,8 +1,7 @@
 import './App.css'
 import { Route, Routes } from 'react-router'
 import Reservation from './components/reservation/reservation'
-import CardList from "./components/sessions/CardList.tsx";
-import CardListReview from "./components/reviews/CardListReview.tsx";
+import LoadCardList from "./components/LoadCardList.tsx";
 
 function App() {
 
@@ -11,8 +10,7 @@ function App() {
       <Routes>
         <Route path="/reservation" element={<Reservation />} />
       </Routes>
-      <CardList/>
-        <CardListReview/>
+        <LoadCardList/>
     </>
   )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import type { escapeSession } from "../../interfaces/escape.ts";
 import Modal from "./Modal.tsx";
 
-const Card: React.FC<escapeSession> = (props) => {
+const CardEscapeSession: React.FC<escapeSession> = (props) => {
     return (
         <div className={`card  bg-base-100 border-1-[${props.color}] w-96 shadow-sm`}>
             <div className="card-body">
@@ -25,4 +25,4 @@ const Card: React.FC<escapeSession> = (props) => {
     );
 };
 
-export default Card;
+export default CardEscapeSession;

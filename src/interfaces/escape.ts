@@ -18,11 +18,10 @@ export interface escapeSession {
 export interface Review {
 
     id: string;
-    sessionId: string;
-    userId: string;
+    username: string;
     rating: number;
-    name: string;
+    nameSession: string;
     comment: string;
     createdAt: Date;
-    
+    userPicture : string;
 }

@@ -1,4 +1,37 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes: light --default;
+}
+@theme {
+  --color-online: oklch(65% 0.3 120); /* Vert doux */
+  --color-away: oklch(85% 0.3 80);   /* Orange clair */
+  --color-dnd: oklch(55% 0.35 20);  /* Rouge foncé */
+  --color-offline: oklch(90% 0 0);  /* Gris clair */
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(98% 0 0);
+  --color-base-200: oklch(96% 0 0);
+  --color-base-300: oklch(93% 0 0);
+  --color-base-content: oklch(25% 0.01 290);
+  --color-primary: oklch(75% 0.2 90); /* Bleu doux */
+  --color-primary-content: oklch(10% 0 0);
+  --color-secondary: oklch(68% 0.1 60); /* Vert olive */
+  --color-secondary-content: oklch(5% 0 0);
+  --color-accent: oklch(88% 0.25 100); /* Rose clair */
+  --color-accent-content: oklch(10% 0 0);
+  --color-neutral: oklch(20% 0.01 280);
+  --color-neutral-content: oklch(90% 0.01 280);
+  --color-info: oklch(70% 0.2 220); /* Bleu vif */
+  --color-info-content: oklch(5% 0 0);
+  --color-success: oklch(68% 0.3 140); /* Vert vif */
+  --color-success-content: oklch(40% 0.1 160);
+  --color-warning: oklch(80% 0.25 50); /* Jaune vif */
+  --color-warning-content: oklch(10% 0 0);
+  --color-error: oklch(60% 0.4 15); /* Rouge vif */
+  --color-error-content: oklch(30% 0.15 10);
 }

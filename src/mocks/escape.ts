@@ -1,7 +1,6 @@
 import { delay, http, HttpResponse } from "msw";
 import { faker } from "@faker-js/faker";
 
-
 const escape = Array.from({ length: 4 }).map(() => ({
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
@@ -11,7 +10,7 @@ const escape = Array.from({ length: 4 }).map(() => ({
     max_players: faker.number.int({ min: 5, max: 10 }),
     min_players: faker.number.int({ min: 2, max: 4 }),
     images: Array.from({ length: 3 }).map(() => faker.image.url()),
-    tags: Array.from({ length: 3 }).map(() => faker.word.noun()),
+    tags: Array.from({ length: 2 }).map(() => faker.word.noun()),
     isVr: faker.datatype.boolean(),
     isCoop: faker.datatype.boolean(),
     isActive: faker.datatype.boolean(),

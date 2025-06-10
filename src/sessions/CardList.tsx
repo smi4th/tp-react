@@ -4,7 +4,7 @@ import Card from "./Card.tsx";
 
 const CardList : React.FC = () => {
 
-    const [allSessions, setAllSessions] = React.useState<escapeSession[]>([]);
+    const [allSessions, setAllSessions] = React.useState<escapeSession[] | null>(null);
 
     useEffect(() => {
 
@@ -28,7 +28,7 @@ const CardList : React.FC = () => {
 
     }, []);
 
-    if (!allSessions){
+    if (!allSessions) {
         return (
             <span className="absolute left-1/2 top-1/2 loading loading-spinner text-info"></span>
         )

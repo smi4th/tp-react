@@ -14,7 +14,7 @@ const Modal: React.FC<escapeSession> = (props) => {
                     <p className="py-2"><strong>Description :</strong> {props.description}</p>
                     <p className="py-2"><strong>Durée :</strong> {Math.floor(props.durationSeconds / 60)} minutes</p>
                     <p className="py-2"><strong>Joueurs :</strong> {props.min_players} - {props.max_players}</p>
-                    <p className="py-2"><strong>Difficulté :</strong> <Rating rating={props.difficulty}/></p>
+                    <div className="py-2"><strong>Difficulté :</strong> <Rating rating={props.difficulty}/></div>
                     <p className="py-2"><strong>Type :</strong> {props.isVr ? "VR" : "Non-VR"}, {props.isCoop ? "Co-op" : "Solo"}</p>
                     <div className="py-2">
                         <strong>Tags :</strong>

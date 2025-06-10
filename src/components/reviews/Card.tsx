@@ -1,6 +1,6 @@
 import React from "react";
-import type { Review } from "../interfaces/escape.ts";
-import Rating from "../sessions/Rating";
+import type { Review } from "../../interfaces/escape.ts";
+import Rating from "../sessions/Rating.tsx";
 
 const Card: React.FC<Review> = (props) => {
     const { username, rating, nameSession, comment, createdAt, userPicture } = props;

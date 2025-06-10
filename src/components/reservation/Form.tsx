@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FirstStep from './FirstStep';
-import SecondStep from './SecondStep';
-import ThirdStep from './ThirdStep';
-import FourthStep from './FourthStep';
+import FirstStep from './FirstStep.tsx';
+import SecondStep from './SecondStep.tsx';
+import ThirdStep from './ThirdStep.tsx';
+import FourthStep from './FourthStep.tsx';
 
 export interface FormProps {
     step: number;

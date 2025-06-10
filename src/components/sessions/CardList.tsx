@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import type {escapeSession} from "../interfaces/escape.ts";
+import type {escapeSession} from "../../interfaces/escape.ts";
 import Card from "./Card.tsx";
 
 const CardList : React.FC = () => {

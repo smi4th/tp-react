@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import type {Review} from "../interfaces/escape.ts";
+import type {Review} from "../../interfaces/escape.ts";
 import Card from "./Card.tsx";
 
 const CardListReview : React.FC = () => {

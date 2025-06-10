@@ -1,6 +1,6 @@
 import App from "./App.tsx";
 import Layout from "./layout/Layout.tsx";
-import Reservation from "./reservation/reservation.tsx";
+import Reservation from "./components/reservation/reservation.tsx";
 
 export default [
     {

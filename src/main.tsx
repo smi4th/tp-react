@@ -1,10 +1,27 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import './index.css'
-import App from './App.tsx'
+import routes from "./routes";
+import {createBrowserRouter} from "react-router";
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const router = createBrowserRouter(routes);
+
+async function enableMocking() {
+    if (import.meta.env.MODE !== "development") {
+        return;
+    }
+
+    const { worker } = await import("./mocks/browser");
+
+    // `worker.start()` returns a Promise that resolves
+    // once the Service Worker is up and ready to intercept requests.
+    return worker.start();
+}
+
+enableMocking().then(() => {
+    ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+        <React.StrictMode>
+            <RouterProvider router={router} />
+        </React.StrictMode>
+    );
+});

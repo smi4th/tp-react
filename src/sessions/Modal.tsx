@@ -1,5 +1,6 @@
 import React from "react";
 import type { escapeSession } from "../interfaces/escape.ts";
+import Rating from "./Rating.tsx";
 
 const Modal: React.FC<escapeSession> = (props) => {
     return (
@@ -11,9 +12,9 @@ const Modal: React.FC<escapeSession> = (props) => {
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">{props.name}</h3>
                     <p className="py-2"><strong>Description :</strong> {props.description}</p>
-                    <p className="py-2"><strong>Durée :</strong> {props.durationSeconds / 60} minutes</p>
+                    <p className="py-2"><strong>Durée :</strong> {Math.floor(props.durationSeconds / 60)} minutes</p>
                     <p className="py-2"><strong>Joueurs :</strong> {props.min_players} - {props.max_players}</p>
-                    <p className="py-2"><strong>Difficulté :</strong> {props.difficulty}/5</p>
+                    <p className="py-2"><strong>Difficulté :</strong> <Rating rating={props.difficulty}/></p>
                     <p className="py-2"><strong>Type :</strong> {props.isVr ? "VR" : "Non-VR"}, {props.isCoop ? "Co-op" : "Solo"}</p>
                     <div className="py-2">
                         <strong>Tags :</strong>

@@ -35,7 +35,7 @@ const CardList : React.FC = () => {
     }
 
     return (
-        <div className={"w-full flex flex-wrap justify-center gap-4"}>
+        <div className={"w-full flex flex-wrap gap-4"}>
             {allSessions.map((session, index) => (
                 <Card key={index} {...session} />
             ))}

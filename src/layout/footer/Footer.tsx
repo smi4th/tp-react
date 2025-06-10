@@ -2,18 +2,14 @@ const Footer: React.FC = () => {
     return (
         <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10 w-screen">
             <nav>
-                <h6 className="footer-title">Services</h6>
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Design</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
+                <h6 className="footer-title">Sessions de jeux</h6>
+                <a className="link link-hover">Toutes sessions</a>
             </nav>
             <nav>
-                <h6 className="footer-title">Company</h6>
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover" href="/src/pages/Contact">Contact</a>
-                <a className="link link-hover">Jobs</a>
-                <a className="link link-hover">Press kit</a>
+                <h6 className="footer-title">LockIn</h6>
+                <a className="link link-hover">A propos de nous</a>
+                <a className="link link-hover" href="/contact">Formulaire de contact</a>
+                <a className="link link-hover">Recrutement</a>
             </nav>
             <nav>
                 <h6 className="footer-title">Legal</h6>

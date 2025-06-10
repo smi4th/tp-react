@@ -5,7 +5,7 @@ export default function Layout() {
     const location = useLocation().pathname;
 
     return (
-        <div className="layout-container">
+        <div className="layout-container flex flex-col min-h-screen justify-between">
             <div className="content">
                 <Outlet />
             </div>

@@ -1,6 +1,7 @@
 import App from "./App.tsx";
 import Layout from "./layout/Layout.tsx";
-import Reservation from "./components/reservation/reservation.tsx";
+import Contact from "./pages/Contact.tsx";
+import Reservation from "./pages/Reservation.tsx";
 
 export default [
     {
@@ -8,7 +9,8 @@ export default [
         path: "/",
         children: [
             { path: "", element: <App /> },
-            { path: "reservation", element: <Reservation /> } // Add this line
+            { path: "reservation", element: <Reservation /> },
+            { path: "contact", element: <Contact /> }
         ]
     }
 ]

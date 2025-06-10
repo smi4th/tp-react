@@ -1,6 +1,6 @@
 import React from "react";
-import Form from "./Form.tsx";
-import Steps from "./Steps.tsx";
+import Form from "../components/reservation/Form";
+import Steps from "../components/reservation/Steps";
 
 const Reservation: React.FC = () => {
 

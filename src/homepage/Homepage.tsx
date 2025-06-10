@@ -1,7 +1,7 @@
 import './Homepage.css'
-import CardList from "./sessions/CardList.tsx";
 import CompanyInfoHome from "./companyInfo/CompanyInfoHome.tsx";
 import styles from "./home.module.css"
+import LoadCardList from "../components/LoadCardList.tsx";
 
 function Homepage() {
 
@@ -10,7 +10,7 @@ function Homepage() {
                 <div className={styles.companyInfoCarousel}>
                     <CompanyInfoHome/>
                 </div>
-                <CardList/>
+                <LoadCardList />
         </>
     )
 }

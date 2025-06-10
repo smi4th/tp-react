@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FirstStep from './FirstStep';
-import SecondStep from './SecondStep';
-import ThirdStep from './ThirdStep';
-import FourthStep from './FourthStep';
+import FirstStep from './FirstStep.tsx';
+import SecondStep from './SecondStep.tsx';
+import ThirdStep from './ThirdStep.tsx';
+import FourthStep from './FourthStep.tsx';
 
 export interface FormProps {
     step: number;
@@ -18,37 +18,10 @@ const Form: React.FC<FormProps> = ({ step, setStep }) => {
         guests: "",
     });
 
-    const isFormValid = Object.values(formData).every((field) => field.trim() !== "");
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (isFormValid) {
-            console.log("Form submitted:", formData);
-            alert("Reservation submitted successfully!");
-            setFormData({
-                name: "",
-                email: "",
-                date: "",
-                time: "",
-                guests: "",
-            });
-        } else {
-            alert("Please fill in all fields before submitting.");
-        }
-    };
-
     return (
         <div className="card w-full max-w-lg shadow-lg bg-white p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-center">Reservation Form</h2>
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-4">
                 {step === 1 && (
                     <FirstStep
                         formData={formData}

@@ -1,7 +1,8 @@
 import { delay, http, HttpResponse } from "msw";
 import { faker } from "@faker-js/faker";
+import type {escapeSession} from "../interfaces/escape.ts";
 
-const escape = Array.from({ length: 4 }).map(() => ({
+const escape : escapeSession[] = Array.from({ length: 4 }).map(() => ({
     id: faker.string.uuid(),
     name: faker.commerce.productName(),
     description: faker.lorem.paragraph(),

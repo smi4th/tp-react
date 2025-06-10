@@ -6,19 +6,21 @@
   border-bottom: 10px solid #e28743;
 }
 
-.companyInfo {
-  display: flex;
-  flex-direction: column;
-  width: 120%;
-  padding-left: 1.5rem;
-}
 .companyInfoPhoto {
   display: flex;
   padding-top: 50px;
   padding-bottom: 15px;
-  width: 120%;
+  width: 100%;
   padding-left: 1.5rem;
 }
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 1.5rem;
+}
+
 .reserverButton {
   position: relative;
   left: 95px;

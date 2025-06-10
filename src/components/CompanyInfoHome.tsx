@@ -20,12 +20,15 @@ export default function CompanyInfoHome() {
                     <div className={styles.companyInfoTitle}>· Espaces privatisables pour séminaire et teambuilding ·</div>
                     <div>21 rue du Sentier Paris 2</div>
                     <br/>
-                    <Button size="large" variant="contained" sx={{width: 200, backgroundColor: '#e28743',
-                        fontSize: '12px', fontWeight: 'bold'}}
-                            className={styles.reserverButton}>
-                        <CalendarMonthIcon/>
-                        <Link to="/reservation">RÉSERVER EN LIGNE</Link>
-                    </Button>
+                    <div>
+                        <Button size="large" variant="contained" sx={{width: 200, backgroundColor: '#e28743',
+                            fontSize: '12px', fontWeight: 'bold'}}
+                                className={styles.reserverButton}>
+                            <CalendarMonthIcon/>
+                            <Link to="/reservation">RÉSERVER EN LIGNE</Link>
+                        </Button>
+                    </div>
+
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { Link } from "react-router";
-import backgroundImage from '../assets/photo.jpg';
+import backgroundImage from '@assets/photo.jpg';
 
 export default function CompanyInfoHome() {
     return (

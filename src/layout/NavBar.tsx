@@ -1,5 +1,5 @@
 import styles from "./layout.module.css"
-import brandLogo from "../assets/logo.png"
+import brandLogo from "@assets/logo.png"
 import {Link} from "react-router";
 
 export default function NavBar() {

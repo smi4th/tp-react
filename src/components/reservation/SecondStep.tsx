@@ -1,5 +1,4 @@
 export interface SecondStepProps {
-    step: number;
     setStep: (step: number) => void;
     formData: {
         date: string;
@@ -13,7 +12,7 @@ export interface SecondStepProps {
         guests: string;
     }>>;
 }
-const SecondStep: React.FC<SecondStepProps> = ({ step, setStep, formData, setFormData }) => {
+const SecondStep: React.FC<SecondStepProps> = ({ setStep, formData, setFormData }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;

@@ -31,7 +31,6 @@ const Form: React.FC<FormProps> = ({ step, setStep }) => {
                 )}
                 {step === 2 && (
                     <SecondStep
-                        step={step}
                         setStep={setStep}
                         formData={formData}
                         setFormData={setFormData}
@@ -39,7 +38,6 @@ const Form: React.FC<FormProps> = ({ step, setStep }) => {
                 )}
                 {step === 3 && (
                     <ThirdStep
-                        step={step}
                         setStep={setStep}
                         formData={formData}
                         setFormData={setFormData}

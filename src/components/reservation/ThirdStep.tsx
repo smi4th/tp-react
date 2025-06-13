@@ -1,5 +1,4 @@
 export interface ThirdStepProps {
-    step: number;
     setStep: (step: number) => void;
     formData: {
         date: string;
@@ -15,7 +14,7 @@ export interface ThirdStepProps {
     }>>;
 }
 
-const ThirdStep: React.FC<ThirdStepProps> = ({ step, setStep, formData, setFormData }) => {
+const ThirdStep: React.FC<ThirdStepProps> = ({ setStep, formData, setFormData }) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;

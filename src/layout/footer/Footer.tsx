@@ -1,6 +1,8 @@
+import React from "react";
+
 const Footer: React.FC = () => {
     return (
-        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10 w-screen">
+        <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10 w-scree h-2/5">
             <nav>
                 <h6 className="footer-title">Sessions de jeux</h6>
                 <a className="link link-hover">Toutes sessions</a>

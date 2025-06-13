@@ -1,37 +1,31 @@
-import styles from "./home.module.css"
-import Button from '@mui/material/Button';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import photoBanner from '../assets/photo.jpg'
-import {Link} from "react-router";
+import { Link } from "react-router";
+import backgroundImage from '../assets/photo.jpg';
 
 export default function CompanyInfoHome() {
     return (
-        <>
-            <div className={styles.companyInfoPhoto}>
-                <div>
-                    <img src={photoBanner} alt='banner-photo' />
-                </div>
-                <div className={styles.companyInfo}>
-                    <div className={styles.companyInfoTitle}>Escape game Horreur à Paris :</div>
-                    <div>LockIn Paris 2e</div>
-                    <br/>
-                    <div>8 salles · 2 à 60 joueurs</div>
-                    <div>· 7 escape games immersives sur le thème de l’ horreur ·</div>
-                    <div className={styles.companyInfoTitle}>· Espaces privatisables pour séminaire et teambuilding ·</div>
-                    <div>21 rue du Sentier Paris 2</div>
-                    <br/>
-                    <div>
-                        <Button size="large" variant="contained" sx={{width: 200, backgroundColor: '#e28743',
-                            fontSize: '12px', fontWeight: 'bold'}}
-                                className={styles.reserverButton}>
-                            <CalendarMonthIcon/>
-                            <Link to="/reservation">RÉSERVER EN LIGNE</Link>
-                        </Button>
-                    </div>
-
+        <div
+            className="hero min-h-screen"
+            style={{
+                backgroundImage: `url(${backgroundImage})`,
+            }}
+        >
+            <div className="hero-overlay"></div>
+            <div className="hero-content text-neutral-content text-center">
+                <div className="max-w-lg">
+                    <h1 className="mb-5 text-7xl font-bold">LockIn Paris 2e!</h1>
+                    <p className="mb-5">
+                        8 salles · 2 à 60 joueurs<br />
+                        7 escape games immersives sur le thème de <span className={"text-red-600"}>l’horreur</span><br />
+                        Espaces privatisables pour séminaire et teambuilding<br />
+                        21 rue du Sentier Paris 2e
+                    </p>
+                    <Link to="/reservation" className="btn btn-primary btn-xl">
+                        <CalendarMonthIcon />
+                        Réserver en ligne
+                    </Link>
                 </div>
             </div>
-
-        </>
-    )
+        </div>
+    );
 }

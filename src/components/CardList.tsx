@@ -36,7 +36,7 @@ const CardList : React.FC<CardDisplay> = ({ card: CardComponent, apiUrl }) => {
     }
 
     return (
-        <div className="w-full flex flex-wrap gap-4">
+        <div className="w-full grid grid-cols-3 gap-8 my-8 mx-auto overflow-hidden">
             {allCards.map((session: any, index: number) => (
                 <CardComponent key={index} {...session} />
             ))}

@@ -6,7 +6,7 @@ const CardReview: React.FC<Review> = (props) => {
     const { username, rating, nameSession, comment, createdAt, userPicture } = props;
 
     return (
-        <div className="stats shadow">
+        <div className="stats shadow-lg">
             <div className="stat">
                 <div className="stat-figure text-primary">
                     <div className="avatar">

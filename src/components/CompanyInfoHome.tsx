@@ -12,8 +12,8 @@ export default function CompanyInfoHome() {
         >
             <div className="hero-overlay"></div>
             <div className="hero-content text-neutral-content text-center">
-                <div className="max-w-lg">
-                    <h1 className="mb-5 text-7xl font-bold">LockIn Paris 2e!</h1>
+                <div className="max-w-md">
+                    <h1 className="mb-5 text-5xl font-bold">LockIn Paris 2e!</h1>
                     <p className="mb-5">
                         8 salles · 2 à 60 joueurs<br />
                         7 escape games immersives sur le thème de <span className={"text-red-600"}>l’horreur</span><br />

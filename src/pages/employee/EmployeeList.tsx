@@ -5,10 +5,10 @@ import EmployeeViewModal from "./EmployeeViewModal.tsx";
 import EmployeeEditModal from "./EmployeeEditModal.tsx";
 
 export default function EmployeeList() {
-    const navigate = useNavigate();
     const [employees, setEmployees] = useState([]);
     const [viewModalEmployee, setViewModalEmployee] = useState<any | null>(null);
     const [editModalEmployee, setEditModalEmployee] = useState<any | null>(null);
+    const apiUrl = "http://localhost:3000";
 
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function EmployeeList() {
         };
         const fetchEmployees = async () => {
             try {
-                const getAllUsers = await fetch("http://localhost:3000/v2/users", requestOptions);
+                const getAllUsers = await fetch(apiUrl + "/v2/users", requestOptions);
                 if (getAllUsers.ok) {
                     return await getAllUsers.json();
                 }
@@ -36,7 +36,7 @@ export default function EmployeeList() {
 
     const handleView = async (id: string) => {
         const token = localStorage.getItem("authToken");
-        const res = await fetch(`http://localhost:3000/v2/users/${id}`, {
+        const res = await fetch(`${apiUrl}/v2/users/${id}`, {
             headers: {Authorization: `Bearer ${token}`}
         });
         if (res.ok) {
@@ -49,7 +49,7 @@ export default function EmployeeList() {
     const handleEdit = async (id: string, updatedData: any) => {
         const token = localStorage.getItem("authToken");
         try {
-            const res = await fetch(`http://localhost:3000/v2/users/${id}`, {
+            const res = await fetch(`${apiUrl}/v2/users/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function EmployeeList() {
         if (!confirm("Confirmer la suppression de cet utilisateur ?")) return;
         try {
             const authToken = localStorage.getItem("authToken");
-            const res = await fetch(`http://localhost:3000/v2/users/${id}`, {
+            const res = await fetch(`${apiUrl}/v2/users/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: "Bearer " + authToken,
@@ -98,8 +98,8 @@ export default function EmployeeList() {
     };
 
     return (
-        <div className="overflow-x-auto">
-            <table className="table">
+        <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+            <table className="table table-zebra">
                 <thead>
                 <tr>
                     <th>Action</th>

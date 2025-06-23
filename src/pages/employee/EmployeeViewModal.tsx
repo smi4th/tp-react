@@ -3,11 +3,11 @@ export default function EmployeeViewModal({onClose, employee}: any) {
         <>
             <dialog className="modal modal-open">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Employee Card</h3>
-                    <p className="py-2">First Name: {employee.firstname}</p>
-                    <p className="py-2">Last Name: {employee.lastname}</p>
-                    <p className="py-2">Email: {employee.email}</p>
-                    <p className="py-2">Role: {employee.role}</p>
+                    <h3 className="font-bold text-lg text-center">Employee Card</h3>
+                    <p className="py-2"><strong>First Name:</strong> {employee.firstname}</p>
+                    <p className="py-2"><strong>Last Name:</strong> {employee.lastname}</p>
+                    <p className="py-2"><strong>Email:</strong> {employee.email}</p>
+                    <p className="py-2"><strong>Role:</strong> {employee.role}</p>
 
                     {employee.contracts?.length > 0 && (
                         <div className="mt-2">

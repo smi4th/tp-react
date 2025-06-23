@@ -11,6 +11,7 @@ export default function LogIn() {
         email: "",
         password: ""
     });
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -31,9 +32,9 @@ export default function LogIn() {
             headers: myHeaders,
             body: raw
         };
-
+        console.log(apiUrl);
         const logIn = async () => {
-            const response = await fetch("http://localhost:3000/auth/login", requestOptions);
+            const response = await fetch(apiUrl + "/auth/login", requestOptions);
             if (!response.ok) {
                 throw new Error("Erreur lors de la connexion.");
             }

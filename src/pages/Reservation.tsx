@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../components/reservation/Form";
+import FormReservation from "../components/reservation/FormReservation.tsx";
 import Steps from "../components/reservation/Steps";
 
 const Reservation: React.FC = () => {
@@ -11,7 +11,7 @@ const Reservation: React.FC = () => {
 
             <Steps step={step} />
 
-            <Form 
+            <FormReservation
                 step={step}
                 setStep={setStep}
             />

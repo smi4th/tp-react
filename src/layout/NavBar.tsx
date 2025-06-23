@@ -20,6 +20,9 @@ export default function NavBar() {
                     <div className={styles.navBarTitles}>
                         <Link to="/reservation">Réserver</Link>
                     </div>
+                    <div className={styles.navBarTitles}>
+                        <Link to="/login">Admin</Link>
+                    </div>
                 </div>
             </div>
 

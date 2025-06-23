@@ -9,7 +9,7 @@ export interface FormProps {
     setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Form: React.FC<FormProps> = ({ step, setStep }) => {
+const FormReservation: React.FC<FormProps> = ({ step, setStep }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -59,4 +59,4 @@ const Form: React.FC<FormProps> = ({ step, setStep }) => {
     );
 };
 
-export default Form;
+export default FormReservation;

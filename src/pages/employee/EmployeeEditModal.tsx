@@ -1,16 +1,34 @@
 import { useState } from "react";
 
-
 export default function EmployeeEditModal({ employee, onClose, onUpdate }) {
     const [formData, setFormData] = useState({
         firstname: employee.firstname,
         lastname: employee.lastname,
         email: employee.email,
+        contract: {
+            type: employee.contracts?.[0]?.type ?? "",
+            title: employee.contracts?.[0]?.title ?? "",
+            annualSalary: employee.contracts?.[0]?.annualSalary ?? "",
+            location: employee.contracts?.[0]?.location ?? "",
+            startDate: employee.contracts?.[0]?.startDate?.slice(0, 10) ?? "", // format YYYY-MM-DD
+            endDate: employee.contracts?.[0]?.endDate?.slice(0, 10) ?? "",
+        }
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+
+        if (name in formData.contract) {
+            setFormData((prev) => ({
+                ...prev,
+                contract: {
+                    ...prev.contract,
+                    [name]: value
+                }
+            }));
+        } else {
+            setFormData((prev) => ({ ...prev, [name]: value }));
+        }
     };
 
     const handleSubmit = () => {
@@ -25,41 +43,97 @@ export default function EmployeeEditModal({ employee, onClose, onUpdate }) {
                     <h2 className="text-2xl font-bold mb-4 text-center">Modifier l'employé</h2>
                     <form className="space-y-4">
                         <div>
-                            <label className="label">
-                                <span className="label-text">Prénom</span>
-                            </label>
+                            <label className="label">Prénom</label>
                             <input
                                 type="text"
                                 name="firstname"
-                                placeholder="Entrez le prénom"
                                 className="input input-bordered w-full"
                                 value={formData.firstname}
                                 onChange={handleChange}
                             />
                         </div>
                         <div>
-                            <label className="label">
-                                <span className="label-text">Nom</span>
-                            </label>
+                            <label className="label">Nom</label>
                             <input
                                 type="text"
                                 name="lastname"
-                                placeholder="Entrez le nom"
                                 className="input input-bordered w-full"
                                 value={formData.lastname}
                                 onChange={handleChange}
                             />
                         </div>
                         <div>
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
+                            <label className="label">Email</label>
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="Entrez l'adresse email"
                                 className="input input-bordered w-full"
                                 value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="divider">Contrat</div>
+                        <div>
+                            <label className="label">Type</label>
+                            <select
+                                name="type"
+                                className="select select-bordered w-full"
+                                value={formData.contract.type}
+                                onChange={handleChange}
+                            >
+                                <option value="">Choisir un type</option>
+                                <option value="CDI">CDI</option>
+                                <option value="CDD">CDD</option>
+                                <option value="Stage">Stage</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label className="label">Titre</label>
+                            <input
+                                type="text"
+                                name="title"
+                                className="input input-bordered w-full"
+                                value={formData.contract.title}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label className="label">Salaire annuel (€)</label>
+                            <input
+                                type="number"
+                                name="annualSalary"
+                                className="input input-bordered w-full"
+                                value={formData.contract.annualSalary}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label className="label">Lieu</label>
+                            <input
+                                type="text"
+                                name="location"
+                                className="input input-bordered w-full"
+                                value={formData.contract.location}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label className="label">Date de début</label>
+                            <input
+                                type="date"
+                                name="startDate"
+                                className="input input-bordered w-full"
+                                value={formData.contract.startDate}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label className="label">Date de fin</label>
+                            <input
+                                type="date"
+                                name="endDate"
+                                className="input input-bordered w-full"
+                                value={formData.contract.endDate}
                                 onChange={handleChange}
                             />
                         </div>

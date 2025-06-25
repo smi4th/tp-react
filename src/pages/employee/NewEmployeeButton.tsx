@@ -47,7 +47,7 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
 
                                 // Create contract
                                 const token = localStorage.getItem("authToken");
-                                const contractRes = await fetch("http://localhost:3000/v2/users/contracts", {
+                                const contractRes = await fetch("http://localhost:3000/adminEmployee/users/contracts", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json",

@@ -20,7 +20,7 @@ export default function EmployeeSearchBar({ onSuccess, onReset }: EmployeeSearch
 
         try {
             const response = await fetch(
-                `http://localhost:3000/v2/users/search?name=${encodeURIComponent(name)}`,
+                `http://localhost:3000/adminEmployee/users/search?name=${encodeURIComponent(name)}`,
                 {
                     method: "GET",
                     headers: myHeaders,

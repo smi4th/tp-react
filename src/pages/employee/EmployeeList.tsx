@@ -24,7 +24,7 @@ export default function EmployeeList() {
         };
         const fetchEmployees = async () => {
             try {
-                const getAllUsers = await fetch(`${apiUrl}/v2/users?page=${page}&limit=${limit}`, requestOptions);
+                const getAllUsers = await fetch(`${apiUrl}/adminEmployee/users?page=${page}&limit=${limit}`, requestOptions);
                 if (getAllUsers.ok) {
                     return await getAllUsers.json();
                 }
@@ -49,7 +49,7 @@ export default function EmployeeList() {
 
     const handleView = async (id: string) => {
         const token = localStorage.getItem("authToken");
-        const res = await fetch(`${apiUrl}/v2/users/${id}`, {
+        const res = await fetch(`${apiUrl}/adminEmployee/users/${id}`, {
             headers: {Authorization: `Bearer ${token}`}
         });
         if (res.ok) {
@@ -62,7 +62,7 @@ export default function EmployeeList() {
     const handleEdit = async (id: string, updatedData: any) => {
         const token = localStorage.getItem("authToken");
         try {
-            const res = await fetch(`${apiUrl}/v2/users/${id}`, {
+            const res = await fetch(`${apiUrl}/adminEmployee/users/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export default function EmployeeList() {
         if (!confirm("Confirmer la suppression de cet utilisateur ?")) return;
         try {
             const authToken = localStorage.getItem("authToken");
-            const res = await fetch(`${apiUrl}/v2/users/${id}`, {
+            const res = await fetch(`${apiUrl}/adminEmployee/users/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: "Bearer " + authToken,

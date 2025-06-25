@@ -11,7 +11,7 @@ export default function LogIn() {
         email: "",
         password: ""
     });
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = "http://localhost:3000";
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;

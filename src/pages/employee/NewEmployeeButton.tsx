@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import EmployeeAddModal from "./EmployeeAddModal.tsx";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void }) {
     const [addModalEmployee, setAddModalEmployee] = useState(false);
@@ -19,7 +20,7 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
                 createPortal(
                     <EmployeeAddModal
                         onClose={() => setAddModalEmployee(false)}
-                        onSubmit={async (formData) => {
+                        onSubmit={async (formData: any) => {
                             try {
                                 // Create user
                                 const userRes = await fetch("http://localhost:3000/auth/signup", {
@@ -74,13 +75,13 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
                                 onSuccess();
 
                             } catch (error: any) {
-                                console.error(error);
-                                alert(error.message || "Error during creation.");
+                                toast.error(error.message || "Error during creation.");
                             }
                         }}
                     />,
                     document.body
                 )}
+            <ToastContainer position="bottom-right" autoClose={3000} />
         </>
     );
 }

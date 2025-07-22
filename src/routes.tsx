@@ -4,6 +4,7 @@ import Contact from "./pages/Contact.tsx";
 import Reservation from "./pages/Reservation.tsx";
 import LogIn from "./pages/employee/LogIn.tsx";
 import EmployeeList from "./pages/employee/EmployeeList.tsx";
+import AdminSessions from "./pages/AdminSessions.tsx";
 
 export default [
     {
@@ -14,8 +15,8 @@ export default [
             { path: "/reservation", element: <Reservation /> },
             { path: "/contact", element: <Contact /> },
             { path: "/login", element: <LogIn /> },
-            { path: "/employees", element: <EmployeeList /> }
-
+            { path: "/employees", element: <EmployeeList /> },
+            { path: "/admin-sessions", element: <AdminSessions /> },
         ]
     }
 ]

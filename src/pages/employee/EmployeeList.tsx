@@ -5,12 +5,13 @@ import EmployeeEditModal from "./EmployeeEditModal.tsx";
 import NewEmployeeButton from "./NewEmployeeButton.tsx";
 import EmployeeSearchBar from "./EmployeeSearchBar.tsx";
 
+const apiUrl: string = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function EmployeeList() {
     const [employees, setEmployees] = useState([]);
     const [viewModalEmployee, setViewModalEmployee] = useState<any | null>(null);
     const [editModalEmployee, setEditModalEmployee] = useState<any | null>(null);
     const [page, setPage] = useState<number>(1)
-    const apiUrl = "http://localhost:3000";
     let totalPageEmployees = useRef(0)
     let totalEmployees = useRef(0)
 

@@ -1,3 +1,4 @@
+import React from "react";
 export interface ThirdStepProps {
     setStep: (step: number) => void;
     formData: {

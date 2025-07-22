@@ -6,8 +6,8 @@ function App() {
 
     return (
         <>
-            <CompanyInfoHome/>
-            <LoadCardList/>
+            <CompanyInfoHome />
+            <LoadCardList />
         </>
     )
 }

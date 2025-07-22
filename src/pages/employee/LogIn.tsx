@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-
+import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import { jwtDecode } from "jwt-decode";
 
 export interface FormProps {
     step: number;
@@ -14,7 +15,7 @@ export default function LogIn() {
     const apiUrl = "http://localhost:3000";
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -32,21 +33,30 @@ export default function LogIn() {
             headers: myHeaders,
             body: raw
         };
-        console.log(apiUrl);
         const logIn = async () => {
-            const response = await fetch(apiUrl + "/auth/login", requestOptions);
-            if (!response.ok) {
-                throw new Error("Erreur lors de la connexion.");
+            try {
+                const response = await fetch(apiUrl + "/auth/login", requestOptions);
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+                return data;
+            } catch (error: any) {
+                console.error("Login error:", error.message);
+                toast.error(error.message);
+                throw error.message;
             }
-            return await response.json();
         }
 
         logIn().then((data) => {
             localStorage.setItem("authToken", data.token);
             localStorage.setItem("expiresAt", String(Date.now() + 1000 * 30 * 30));
 
+            const decodedToken = jwtDecode(data.token);
+            localStorage.setItem("userDetails", JSON.stringify(decodedToken));
+
             window.location.href = "/employees";
-        })
+        }).catch((_: any) => {})
 
     }
 
@@ -93,6 +103,7 @@ export default function LogIn() {
                     </form>
                 </div>
             </div>
+            <ToastContainer position="bottom-right" autoClose={3000} />
         </>
     );
 }

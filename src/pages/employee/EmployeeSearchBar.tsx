@@ -2,6 +2,7 @@ import { useState } from "react";
 
 type EmployeeSearchBarProps = {
     onSuccess: (employees: any[]) => void;
+    onReset: () => void;
 };
 
 export default function EmployeeSearchBar({ onSuccess, onReset }: EmployeeSearchBarProps) {

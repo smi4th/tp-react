@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 
-
-export interface FormProps {
+/*export interface FormProps {
     step: number;
     setStep: React.Dispatch<React.SetStateAction<number>>;
-}
+}*/
 
-export default function LogIn() {
+const apiUrl : string = import.meta.env.API_URL || "http://localhost:3000";
+
+
+const LogIn : React.FC = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-    const apiUrl = "http://localhost:3000";
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -96,4 +97,6 @@ export default function LogIn() {
         </>
     );
 }
+
+export default LogIn;
 

@@ -1,6 +1,11 @@
 import { useState } from "react";
+import React from "react";
+interface EmployeeAddModalProps {
+    onClose: () => void;
+    onSubmit: (data: any) => void;
+}
 
-export default function EmployeeAddModal({ onClose, onSubmit }) {
+const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }) => {
     const [formData, setFormData] = useState({
         firstname: "",
         lastname: "",
@@ -17,7 +22,7 @@ export default function EmployeeAddModal({ onClose, onSubmit }) {
         },
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
 
         if (name in formData.contract) {
@@ -36,9 +41,9 @@ export default function EmployeeAddModal({ onClose, onSubmit }) {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formatDate = (str) => {
+        const formatDate = (str : string) => {
             const [day, month, year] = str.split("/");
             return `${year}-${month}-${day}`;
         };
@@ -106,3 +111,5 @@ export default function EmployeeAddModal({ onClose, onSubmit }) {
         </div>
     );
 }
+
+export default EmployeeAddModal;

@@ -23,8 +23,9 @@ const CardList : React.FC<CardDisplay> = ({ card: CardComponent, apiUrl }) => {
             .then((data) => {
                 setAllCards(data);
             })
-            .catch((error) => {
+            .catch((error : Error) => {
                 console.error("Erreur lors de la récupération des sessions d'évasion");
+                console.error(error);
             });
 
     }, [apiUrl]);

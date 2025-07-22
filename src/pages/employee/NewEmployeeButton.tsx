@@ -2,6 +2,8 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import EmployeeAddModal from "./EmployeeAddModal.tsx";
 
+const apiUrl : string = import.meta.env.API_URL || "http://localhost:3000";
+
 export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void }) {
     const [addModalEmployee, setAddModalEmployee] = useState(false);
 
@@ -21,8 +23,7 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
                         onClose={() => setAddModalEmployee(false)}
                         onSubmit={async (formData) => {
                             try {
-                                // Create user
-                                const userRes = await fetch("http://localhost:3000/auth/signup", {
+                                const userRes = await fetch(`${apiUrl}/auth/signup`, {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json",
@@ -47,7 +48,7 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
 
                                 // Create contract
                                 const token = localStorage.getItem("authToken");
-                                const contractRes = await fetch("http://localhost:3000/adminEmployee/users/contracts", {
+                                const contractRes = await fetch(`${apiUrl}/adminEmployee/users/contracts`, {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json",

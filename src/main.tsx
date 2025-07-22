@@ -7,7 +7,7 @@ import {createBrowserRouter, RouterProvider} from "react-router";
 const router = createBrowserRouter(routes);
 
 async function enableMocking() {
-    if (import.meta.env.MODE !== "development") {
+    if (import.meta.env.MODE !== "test") {
         return;
     }
 

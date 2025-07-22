@@ -12,6 +12,7 @@ export interface ThirdStepProps {
         date: string;
         time: string;
         guests: string;
+        idSlot: string;
     }>>;
 }
 

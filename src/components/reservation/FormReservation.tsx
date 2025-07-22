@@ -16,6 +16,7 @@ const FormReservation: React.FC<FormProps> = ({ step, setStep }) => {
         date: "",
         time: "",
         guests: "",
+        idSlot: "",
     });
 
     return (
@@ -46,10 +47,11 @@ const FormReservation: React.FC<FormProps> = ({ step, setStep }) => {
                 {step === 4 && (
                     <FourthStep
                         name={formData.name}
-                        email={formData.email}
+                        customerEmail={formData.email}
                         date={formData.date}
                         time={formData.time}
                         guests={formData.guests}
+                        timeSlotId={formData.idSlot}
                         setStep={setStep}
                         setFormData={setFormData}
                     />

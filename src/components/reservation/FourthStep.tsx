@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 export interface FourthStepProps {
     name: string;
-    email: string;
+    customerEmail: string;
     date: string;
     time: string;
+    timeSlotId: string;
     guests: string;
     setStep: React.Dispatch<React.SetStateAction<number>>;
     setFormData: React.Dispatch<React.SetStateAction<{
@@ -13,22 +14,25 @@ export interface FourthStepProps {
         date: string;
         time: string;
         guests: string;
+        idSlot: string;
     }>>;
 }
 
-const FourthStep: React.FC<FourthStepProps> = ({ name, email, date, time, guests, setStep }) => {
+const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+
+const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time, guests, setStep,timeSlotId }) => {
     const [showToast, setShowToast] = useState(false);
 
     const handleConfirm = () => {
         
         const createReservation = async () => {
             try {
-                const response = await fetch("/api/v1/reservations", {
+                const response = await fetch(apiUrl + "/reservations", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ name, email, date, time, guests }),
+                    body: JSON.stringify({ name, customerEmail, date, time, guests , timeSlotId }),
                 });
                 if (!response.ok) {
                     throw new Error("Failed to create reservation");
@@ -58,7 +62,7 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, email, date, time, guests
                             </tr>
                             <tr>
                                 <td className="font-bold">Email:</td>
-                                <td>{email}</td>
+                                <td>{customerEmail}</td>
                             </tr>
                             <tr>
                                 <td className="font-bold">Date:</td>

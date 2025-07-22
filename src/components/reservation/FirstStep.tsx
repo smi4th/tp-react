@@ -11,6 +11,7 @@ export interface FirstStepProps {
         date: string;
         time: string;
         guests: string;
+        idSlot: string;
     }>>;
     setStep: React.Dispatch<React.SetStateAction<number>>;
 }

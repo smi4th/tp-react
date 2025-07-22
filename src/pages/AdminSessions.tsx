@@ -5,10 +5,12 @@ import SessionList from '../components/AdminSession/SessionList';
 import type { Session } from '../interfaces/session';
 import SessionForm from '../components/AdminSession/SessionForm';
 
+
+const apiUrl: string = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 export default function AdminSessions() {
     const [sessions, setSessions] = useState<Session[]>([]);
     const [sessionToEdit, setSessionToEdit] = useState<Session | null>(null);
-    const apiUrl = "http://localhost:3000";
     const modalRef = useRef<HTMLDialogElement>(null);
 
     const fetchSessions = async () => {

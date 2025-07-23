@@ -1,5 +1,5 @@
 import React from "react";
-import type { Review } from "../../interfaces/escape.ts";
+import type { Review } from "@interfaces/escape.ts";
 import Rating from "../sessions/Rating.tsx";
 
 const CardReview: React.FC<Review> = (props) => {

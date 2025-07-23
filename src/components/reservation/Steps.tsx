@@ -7,9 +7,9 @@ const Steps: React.FC<StepProps> = ({ step }) => {
 
     return (
         <ul className="steps steps-vertical lg:steps-horizontal">
-            <li className={`step ${step >= 1 ? 'step-primary' : ''}`}>Name & Email</li>
-            <li className={`step ${step >= 2 ? 'step-primary' : ''}`}>Date & Time</li>
-            <li className={`step ${step >= 3 ? 'step-primary' : ''}`}>Number of Guests</li>
+            <li className={`step ${step >= 1 ? 'step-primary' : ''}`}>Nom et email</li>
+            <li className={`step ${step >= 2 ? 'step-primary' : ''}`}>Date et heure</li>
+            <li className={`step ${step >= 3 ? 'step-primary' : ''}`}>Nombre de participants</li>
             <li className={`step ${step >= 4 ? 'step-primary' : ''}`}>Confirmation</li>
         </ul>
     );

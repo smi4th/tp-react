@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Session } from '../../interfaces/session';
+import type { Session } from '@interfaces/session';
 import TimeSlotCard from './TimeSlotCard';
 
 interface SessionCardProps {

@@ -1,6 +1,6 @@
 import './App.css'
-import LoadCardList from "./components/LoadCardList.tsx";
-import CompanyInfoHome from "./components/CompanyInfoHome.tsx";
+import LoadCardList from "@components/landing/LoadCardList.tsx";
+import CompanyInfoHome from "@components/landing/CompanyInfoHome.tsx";
 
 function App() {
 

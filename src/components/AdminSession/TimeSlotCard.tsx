@@ -1,5 +1,5 @@
 import React from 'react';
-import type { TimeSlot } from '../../interfaces/session';
+import type { TimeSlot } from '@interfaces/session.ts';
 
 interface TimeSlotCardProps {
     timeSlot: TimeSlot;

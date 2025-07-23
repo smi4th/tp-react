@@ -13,13 +13,12 @@ export interface FirstStepProps {
         guests: string;
         idSlot: string;
     }>>;
-    setStep: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const FirstStep: React.FC<FirstStepProps> = ({ formData, setFormData, setStep }) => {
+const FirstStep: React.FC<FirstStepProps> = ({formData, setFormData}) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -27,43 +26,37 @@ const FirstStep: React.FC<FirstStepProps> = ({ formData, setFormData, setStep })
     };
 
     return (
-        <>
-            <div>
-                <label className="label">
-                    <span className="label-text">Name</span>
+
+        <div className={"w-full flex flex-col space-y-4"}>
+            <div className="flex flex-col w-full">
+                <label className="label w-full">
+                    <span className="label-text">Nom</span>
                 </label>
                 <input
                     type="text"
                     name="name"
-                    placeholder="Enter your name"
+                    placeholder="Entrer votre nom"
                     className="input input-bordered w-full"
                     value={formData.name}
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label className="label">
+            <div className="flex flex-col w-full">
+                <label className="label w-full">
                     <span className="label-text">Email</span>
                 </label>
                 <input
                     type="email"
                     name="email"
-                    placeholder="Enter your email"
+                    placeholder="Entrer votre email"
                     className="input input-bordered w-full"
                     value={formData.email}
                     onChange={handleChange}
                 />
             </div>
-            <button
-                type="button"
-                className="btn btn-primary w-full"
-                onClick={() => setStep(2)}
-                disabled={!formData.name.trim() || !formData.email.trim()}
-            >
-                Next
-            </button>
-        </>
-    );
+        </div>
+    )
+        ;
 
 };
 

@@ -7,7 +7,6 @@ export interface FourthStepProps {
     time: string;
     timeSlotId: string;
     guests: string;
-    setStep: React.Dispatch<React.SetStateAction<number>>;
     setFormData: React.Dispatch<React.SetStateAction<{
         name: string;
         email: string;
@@ -20,7 +19,7 @@ export interface FourthStepProps {
 
 const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
 
-const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time, guests, setStep,timeSlotId }) => {
+const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time, guests,timeSlotId }) => {
     const [showToast, setShowToast] = useState(false);
 
     const handleConfirm = () => {
@@ -50,14 +49,14 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time
     }
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Reservation Summary</h2>
-            <div className="card bg-base-100 shadow-xl">
+        <div className="p-4 flex flex-col items-center justify-center space-y-4 w-full">
+            <h2 className="text-xl font-bold mb-4">Récapitulatif de la réservation</h2>
+            <div className="card shadow-accent shaddow-lg w-full max-w-md border-2 border-secondary">
                 <div className="card-body">
                     <table className="table w-full">
                         <tbody>
                             <tr>
-                                <td className="font-bold">Name:</td>
+                                <td className="font-bold">Nom:</td>
                                 <td>{name}</td>
                             </tr>
                             <tr>
@@ -69,11 +68,11 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time
                                 <td>{date}</td>
                             </tr>
                             <tr>
-                                <td className="font-bold">Time:</td>
+                                <td className="font-bold">Heure:</td>
                                 <td>{time}</td>
                             </tr>
                             <tr>
-                                <td className="font-bold">Guests:</td>
+                                <td className="font-bold">Nombre de participants:</td>
                                 <td>{guests}</td>
                             </tr>
                         </tbody>
@@ -83,17 +82,10 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time
             <div className="flex justify-between mt-4">
                 <button
                     type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setStep(2)}
-                >
-                    Back
-                </button>
-                <button
-                    type="button"
                     className="btn btn-primary"
                     onClick={handleConfirm}
                 >
-                    Confirm Reservation
+                    Confirmer la réservation
                 </button>
             </div>
             {showToast && (

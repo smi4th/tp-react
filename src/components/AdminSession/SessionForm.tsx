@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import type { Session, TimeSlot } from '../../interfaces/session';
+import type { Session, TimeSlot } from '@interfaces/session.ts';
 
 interface SessionFormProps {
     onSessionAdded: (session: Session) => void;

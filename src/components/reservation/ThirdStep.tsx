@@ -1,6 +1,6 @@
 import React from "react";
+
 export interface ThirdStepProps {
-    setStep: (step: number) => void;
     formData: {
         date: string;
         time: string;
@@ -16,49 +16,30 @@ export interface ThirdStepProps {
     }>>;
 }
 
-const ThirdStep: React.FC<ThirdStepProps> = ({ setStep, formData, setFormData }) => {
+const ThirdStep: React.FC<ThirdStepProps> = ({formData, setFormData}) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
     };
-    
+
     return (
-        <>
-            <div>
-                <label className="label">
-                    <span className="label-text">Number of Guests</span>
-                </label>
-                <input
-                    type="number"
-                    name="guests"
-                    placeholder="Enter number of guests"
-                    className="input input-bordered w-full"
-                    value={formData.guests}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="flex justify-between">
-                <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setStep(1)}
-                >
-                    Back
-                </button>
-                <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => setStep(4)}
-                    disabled={!formData.date.trim() || !formData.time.trim()}
-                >
-                    Next
-                </button>
-            </div>
-        </>
+        <div className="flex flex-col w-full">
+            <label className="label">
+                <span className="label-text">Nombre de participants</span>
+            </label>
+            <input
+                type="number"
+                name="guests"
+                placeholder="Entrez le nombre de participants"
+                className="input input-bordered w-full"
+                value={formData.guests}
+                onChange={handleChange}
+            />
+        </div>
     )
 }
 export default ThirdStep;

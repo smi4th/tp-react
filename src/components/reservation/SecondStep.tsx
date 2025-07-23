@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
 export interface SecondStepProps {
-    setStep: (step: number) => void;
     formData: {
         date: string;
         time: string;
@@ -36,11 +35,11 @@ type Slot = {
     };
 };
 
-const SecondStep: React.FC<SecondStepProps> = ({ setStep, formData, setFormData }) => {
-    const [slotTime, setSlotTime] = React.useState<Slot[]>([]);
+const SecondStep: React.FC<SecondStepProps> = ({formData, setFormData}) => {
+    const [slotTime, setSlotTime] = useState<Slot[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -64,9 +63,10 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, formData, setFormData 
     }, []);
 
     return (
-        <>
-            <div>
-                <label className="label">
+
+        <div className={"w-full flex flex-col space-y-4"}>
+            <div className={"flex flex-col"}>
+                <label className="label w-full">
                     <span className="label-text">Date</span>
                 </label>
                 <input
@@ -77,9 +77,10 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, formData, setFormData 
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label className="label">
-                    <span className="label-text">Time</span>
+            <div className={"flex flex-col"}>
+
+                <label className="label w-full">
+                    <span className="label-text">Durée</span>
                 </label>
                 <input
                     type="time"
@@ -100,32 +101,16 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, formData, setFormData 
                 }
             >
                 <option disabled value="">
-                    Select a time slot
+                    Sélectionnez un créneau horaire
                 </option>
                 {slotTime.map((slot) => (
                     <option key={slot.id} value={slot.id}>
-                        {slot.startTime} - {slot.endTime} Escape : <p className={"text-secondary"}>{slot.session.name}</p>
+                        {slot.startTime} - {slot.endTime} Escape : <p
+                        className={"text-secondary"}>{slot.session.name}</p>
                     </option>
                 ))}
             </select>
-            <div className="flex justify-between">
-                <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setStep(1)}
-                >
-                    Back
-                </button>
-                <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={() => setStep(3)}
-                    disabled={!formData.date.trim() || !formData.time.trim()}
-                >
-                    Next
-                </button>
-            </div>
-        </>
+        </div>
     );
 };
 

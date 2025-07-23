@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Session } from '../../interfaces/session';
+import type { Session } from '@interfaces/session.ts';
 import SessionCard from './SessionCard';
 
 interface SessionListProps {

@@ -1,23 +1,5 @@
 import React, {useEffect, useState} from "react";
-
-export interface SecondStepProps {
-    formData: {
-        date: string;
-        time: string;
-        name: string;
-        email: string;
-        guests: string;
-        idSlot: string;
-    };
-    setFormData: React.Dispatch<React.SetStateAction<{
-        name: string;
-        email: string;
-        date: string;
-        time: string;
-        guests: string;
-        idSlot: string;
-    }>>;
-}
+import type {StepProps} from "@interfaces/form.ts";
 
 const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
 
@@ -35,7 +17,7 @@ type Slot = {
     };
 };
 
-const SecondStep: React.FC<SecondStepProps> = ({formData, setFormData}) => {
+const SecondStep: React.FC<StepProps> = ({formData, setFormData}) => {
     const [slotTime, setSlotTime] = useState<Slot[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

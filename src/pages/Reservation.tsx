@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Steps from "@components/reservation/Steps.tsx";
 import { useMultiStepForm } from "@/hook/useMultiStepForm.ts";
 import FirstStep from "@components/reservation/FirstStep.tsx";
@@ -8,7 +8,7 @@ import FourthStep from "@components/reservation/FourthStep.tsx";
 
 const Reservation: React.FC = () => {
 
-    const [formData, setFormData] = React.useState({
+    const [formData, setFormData] = useState({
         name: "",
         email: "",
         date: "",
@@ -28,7 +28,6 @@ const Reservation: React.FC = () => {
             time={formData.time}
             guests={formData.guests}
             timeSlotId={formData.idSlot}
-            setFormData={setFormData}
         />
     ];
 

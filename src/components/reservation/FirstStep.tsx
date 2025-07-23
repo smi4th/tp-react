@@ -1,33 +1,18 @@
 import React from 'react';
+import type {StepProps} from "@interfaces/form.ts";
 
-export interface FirstStepProps {
-    formData: {
-        name: string;
-        email: string;
-    };
-    setFormData: React.Dispatch<React.SetStateAction<{
-        name: string;
-        email: string;
-        date: string;
-        time: string;
-        guests: string;
-        idSlot: string;
-    }>>;
-}
 
-const FirstStep: React.FC<FirstStepProps> = ({formData, setFormData}) => {
-
+const FirstStep: React.FC<StepProps> = ({ formData, setFormData }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormData((prev) => ({
+        const { name, value } = e.target;
+        setFormData(prev => ({
             ...prev,
             [name]: value,
         }));
     };
 
     return (
-
-        <div className={"w-full flex flex-col space-y-4"}>
+        <div className="w-full flex flex-col space-y-4">
             <div className="flex flex-col w-full">
                 <label className="label w-full">
                     <span className="label-text">Nom</span>
@@ -55,9 +40,7 @@ const FirstStep: React.FC<FirstStepProps> = ({formData, setFormData}) => {
                 />
             </div>
         </div>
-    )
-        ;
-
+    );
 };
 
 export default FirstStep;

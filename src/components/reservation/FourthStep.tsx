@@ -1,52 +1,60 @@
 import React, { useState } from "react";
 
-export interface FourthStepProps {
+const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+
+interface ReservationFormData {
     name: string;
     customerEmail: string;
     date: string;
     time: string;
-    timeSlotId: string;
     guests: string;
-    setFormData: React.Dispatch<React.SetStateAction<{
-        name: string;
-        email: string;
-        date: string;
-        time: string;
-        guests: string;
-        idSlot: string;
-    }>>;
+    timeSlotId: string;
 }
 
-const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+type Toasted = {
+    message: string;
+    type: "success" | "error";
+}
 
-const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time, guests,timeSlotId }) => {
-    const [showToast, setShowToast] = useState(false);
+const FourthStep: React.FC<ReservationFormData> = (props) => {
+    const [showToast, setShowToast] = useState<Toasted>({
+        message: "",
+        type: "success"
+    });
 
     const handleConfirm = () => {
-        
+
         const createReservation = async () => {
             try {
                 const response = await fetch(apiUrl + "/reservations", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ name, customerEmail, date, time, guests , timeSlotId }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(props),
                 });
                 if (!response.ok) {
                     throw new Error("Failed to create reservation");
                 }
-                const data = await response.json();
-                console.log("Reservation created successfully:", data);
-                setShowToast(true);
-                setTimeout(() => setShowToast(false), 3000); // Hide toast after 3 seconds
+                setShowToast({
+                    message: "Inscription validée. Vous recevrez un email de confirmation.",
+                    type: "success"
+                });
+
             } catch (error) {
+                setShowToast({
+                    message: "Erreur lors de la création de la réservation. Veuillez réessayer.",
+                    type: "error"
+                })
                 console.error("Error creating reservation:", error);
-                alert("Failed to create reservation. Please try again.");
+
+            }finally {
+                setTimeout(() => setShowToast({
+                    message: "",
+                    type: "success"
+                }), 10000);
             }
         };
         createReservation();
-    }
+    };
 
     return (
         <div className="p-4 flex flex-col items-center justify-center space-y-4 w-full">
@@ -55,26 +63,26 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time
                 <div className="card-body">
                     <table className="table w-full">
                         <tbody>
-                            <tr>
-                                <td className="font-bold">Nom:</td>
-                                <td>{name}</td>
-                            </tr>
-                            <tr>
-                                <td className="font-bold">Email:</td>
-                                <td>{customerEmail}</td>
-                            </tr>
-                            <tr>
-                                <td className="font-bold">Date:</td>
-                                <td>{date}</td>
-                            </tr>
-                            <tr>
-                                <td className="font-bold">Heure:</td>
-                                <td>{time}</td>
-                            </tr>
-                            <tr>
-                                <td className="font-bold">Nombre de participants:</td>
-                                <td>{guests}</td>
-                            </tr>
+                        <tr>
+                            <td className="font-bold">Nom:</td>
+                            <td>{props.name}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-bold">Email:</td>
+                            <td>{props.customerEmail}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-bold">Date:</td>
+                            <td>{props.date}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-bold">Heure:</td>
+                            <td>{props.time}</td>
+                        </tr>
+                        <tr>
+                            <td className="font-bold">Nombre de participants:</td>
+                            <td>{props.guests}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -89,14 +97,25 @@ const FourthStep: React.FC<FourthStepProps> = ({ name, customerEmail, date, time
                 </button>
             </div>
             {showToast && (
-                <div className="toast toast-end">
-                    <div className="alert alert-success">
-                        <span>Message sent successfully.</span>
-                    </div>
-                </div>
+                <Toaster message={showToast.message} type={showToast.type} />
             )}
         </div>
     );
 };
 
 export default FourthStep;
+
+interface ToasterProps {
+    message: string;
+    type: "success" | "error";
+}
+
+const Toaster: React.FC<ToasterProps> = ({ message, type }) => {
+    return (
+        <div className="toast toast-end">
+            <div className={`alert alert-${type}`}>
+                <span>{message}</span>
+            </div>
+        </div>
+    );
+};

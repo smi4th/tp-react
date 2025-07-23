@@ -1,22 +1,7 @@
 import React from "react";
+import type { StepProps} from "@interfaces/form.ts";
 
-export interface ThirdStepProps {
-    formData: {
-        date: string;
-        time: string;
-        guests: string;
-    };
-    setFormData: React.Dispatch<React.SetStateAction<{
-        name: string;
-        email: string;
-        date: string;
-        time: string;
-        guests: string;
-        idSlot: string;
-    }>>;
-}
-
-const ThirdStep: React.FC<ThirdStepProps> = ({formData, setFormData}) => {
+const ThirdStep: React.FC<StepProps> = ({formData, setFormData}) => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;

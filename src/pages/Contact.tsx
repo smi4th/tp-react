@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+const catImages = [
+    'src/assets/cat-1.jpg',
+    'src/assets/cat-2.jpg',
+    'src/assets/cat-3.jpg',
+    'src/assets/cat-4.jpg',
+    'src/assets/cat-5.jpg'
+];
 
 const Contact: React.FC = () => {
     const [toastMessage, setToastMessage] = useState<string | null>(null);
     const [toastType, setToastType] = useState<'success' | 'error' | null>(null);
-    const [catImage, setCatImage] = useState<string>('');
 
-    useEffect(() => {
-        // List of cat images
-        const catImageNumbers = Array.from({ length: 5 }, (_, i) => i + 1);
-        const randomNumber = catImageNumbers[Math.floor(Math.random() * catImageNumbers.length)];
-        setCatImage(`src/assets/cat-${randomNumber}.jpg`);
-    }, []);
+    const [catImage] = useState<string>(
+        catImages[Math.floor(Math.random() * catImages.length)]
+    );
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        // Simulate form submission logic
-        const isSuccess = Math.random() > 0.5; // Random success or error for demonstration
-
+        const isSuccess = Math.random() > 0.5;
         if (isSuccess) {
-            setToastMessage('Your message has been sent successfully!');
+            setToastMessage('Votre message a bien été envoyé !');
             setToastType('success');
         } else {
-            setToastMessage('Failed to send your message. Please try again.');
+            setToastMessage("Échec de l'envoi du message. Veuillez réessayer.");
             setToastType('error');
         }
-
-        // Clear toast after 3 seconds
         setTimeout(() => {
             setToastMessage(null);
             setToastType(null);
@@ -37,40 +36,35 @@ const Contact: React.FC = () => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             <div className="card w-full max-w-md shadow-xl bg-base-100">
                 <div className="card-body">
-                    <div className="flex">
-                        <h2 className="card-title text-center mr-4">
-                            Contact Us
-                        </h2>
+                    <div className="flex items-center justify-between mb-4">
+                        <legend className="fieldset-legend text-2xl font-bold">Contactez-nous</legend>
                         <div className="avatar">
                             <div className="w-16 rounded">
-                                <img src={catImage} alt="Contact Avatar" />
+                                <img src={catImage} alt="Chat mignon" />
                             </div>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <fieldset className="fieldset w-full p-0">
-                            <label className="label">Name</label>
-                            <input type="text" className="input" placeholder="Your Name" required />
+                    <form onSubmit={handleSubmit} className="w-full">
+                        <fieldset className="fieldset mx-auto">
 
-                            <label className="label mt-4">Email</label>
-                            <input type="email" className="input" placeholder="Your Email" required />
+                            <label className="label">Demande</label>
+                            <input type="text validator" className="input w-full" placeholder="Votre demande" />
 
-                            <label className="label mt-4">Message</label>
-                            <textarea className="textarea" placeholder="Your Message" required></textarea>
+                            <label className="label">Email</label>
+                            <input type="email validator" className="input w-full" placeholder="Votre email" />
+
+                            <label className="label">Commentaire</label>
+                            <textarea className="textarea w-full" placeholder="Commentaire"></textarea>
                         </fieldset>
 
-                        <div className="form-control mt-6">
-                            <button type="submit" className="btn btn-primary">Send</button>
+                        <div className="form-control mt-6 flex justify-end">
+                            <button type="submit" className="btn btn-primary">Envoyer</button>
                         </div>
                     </form>
                 </div>
             </div>
-
-            {/* Toast Notification */}
             {toastMessage && (
-                <div
-                    className={`toast toast-${toastType} fixed bottom-4 right-4`}
-                >
+                <div className={`toast toast-${toastType} fixed bottom-4 right-4`}>
                     <div className={`alert alert-${toastType}`}>
                         <span>{toastMessage}</span>
                     </div>

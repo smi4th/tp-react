@@ -1,9 +1,9 @@
 import {useEffect, useRef, useState} from "react";
 import {createPortal} from "react-dom";
-import EmployeeViewModal from "./EmployeeViewModal.tsx";
-import EmployeeEditModal from "./EmployeeEditModal.tsx";
-import NewEmployeeButton from "./NewEmployeeButton.tsx";
-import EmployeeSearchBar from "./EmployeeSearchBar.tsx";
+import EmployeeViewModal from "@components/employee/EmployeeViewModal.tsx";
+import EmployeeEditModal from "@components/employee/EmployeeEditModal.tsx";
+import NewEmployeeButton from "@components/employee/NewEmployeeButton.tsx";
+import EmployeeSearchBar from "@components/employee/EmployeeSearchBar.tsx";
 
 const apiUrl: string = import.meta.env.VITE_API_URL || "http://localhost:3000";
 

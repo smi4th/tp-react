@@ -13,7 +13,7 @@ const SessionCard: React.FC<SessionCardProps> = ({ session, onEdit, onDelete }) 
 
 
     return (
-        <div className="border p-4 rounded-lg mb-4 shadow-lg">
+        <div className="p-4 rounded-lg mb-4 shadow-lg bg-base-300">
             <div className="p-4">
                 <div className="flex justify-between items-center mb-2">
                     <h2 className="text-xl font-bold">{session.name}</h2>

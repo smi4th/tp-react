@@ -127,7 +127,7 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-4 border rounded-lg bg-base-200">
+        <form onSubmit={handleSubmit} className="p-4">
             <h2 className="text-xl font-bold mb-4">{sessionToEdit ? 'Modifier la session' : 'Ajouter une nouvelle session'}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="col-span-1 md:col-span-2">
@@ -242,11 +242,10 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
                     ))}
                     <button type="button" onClick={() => setPictures([...pictures, ''])} className="btn btn-secondary mt-2">Ajouter une image</button>
                 </div>
-                {/* TimeSlots */}
                 <div className="col-span-1 md:col-span-2">
                     <h3 className="font-bold mb-2">Créneaux Horaires</h3>
                     {timeSlots.map((ts, index) => (
-                        <div key={index} className="p-2 border rounded-md bg-base-100">
+                        <div key={index} className="p-2">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                 <div>
                                     <label className="label"><span className="label-text">Jour</span></label>
@@ -276,7 +275,12 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
                                 </div>
                             </div>
                             {timeSlots.length > 1 && (
-                                <button type="button" onClick={() => removeTimeSlot(index)} className="btn btn-error mt-2">Supprimer le créneau</button>
+                                <>
+                                    <button type="button" onClick={() => removeTimeSlot(index)}
+                                            className="btn btn-error mt-2">Supprimer le créneau
+                                    </button>
+                                    <div className={"divider my-2"}></div>
+                                </>
                             )}
                         </div>
                     ))}
@@ -284,7 +288,9 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
                 </div>
             </div>
             {error && <p className="text-error mt-4">{error}</p>}
-            <button type="submit" className="btn btn-primary mt-4">{sessionToEdit ? 'Mettre à jour' : 'Créer'}</button>
+            <div className={"w-full flex justify-end"}>
+                <button type="submit" className="btn btn-primary mt-4">{sessionToEdit ? 'Mettre à jour' : 'Créer'}</button>
+            </div>
         </form>
     );
 

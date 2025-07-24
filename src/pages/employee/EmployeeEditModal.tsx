@@ -1,7 +1,13 @@
 import { useState } from "react";
 
-export default function EmployeeEditModal({ employee, onClose, onUpdate }) {
-    const [formData, setFormData] = useState({
+interface EmployeeEditModalProps {
+    employee: Employee;
+    onClose: () => void;
+    onUpdate: (data: EmployeeEditFormData) => void;
+}
+
+export default function EmployeeEditModal({ employee, onClose, onUpdate }: EmployeeEditModalProps) {
+    const [formData, setFormData] = useState<EmployeeEditFormData>({
         firstname: employee.firstname,
         lastname: employee.lastname,
         email: employee.email,
@@ -10,7 +16,7 @@ export default function EmployeeEditModal({ employee, onClose, onUpdate }) {
             title: employee.contracts?.[0]?.title ?? "",
             annualSalary: employee.contracts?.[0]?.annualSalary ?? "",
             location: employee.contracts?.[0]?.location ?? "",
-            startDate: employee.contracts?.[0]?.startDate?.slice(0, 10) ?? "", // format YYYY-MM-DD
+            startDate: employee.contracts?.[0]?.startDate?.slice(0, 10) ?? "",
             endDate: employee.contracts?.[0]?.endDate?.slice(0, 10) ?? "",
         }
     });

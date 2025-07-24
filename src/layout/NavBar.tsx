@@ -4,6 +4,7 @@ import {useSession} from "@/hook/useSession.ts";
 
 export default function NavBar() {
     const { userDetails, clearSession } = useSession();
+    console.log(userDetails);
     const navigate = useNavigate();
 
     const handleLogout = () => {

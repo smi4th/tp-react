@@ -1,10 +1,11 @@
 import App from "./App.tsx";
 import Layout from "./layout/Layout.tsx";
-import Contact from "./pages/Contact.tsx";
-import Reservation from "./pages/Reservation.tsx";
+import Contact from "@pages/Contact.tsx";
+import Reservation from "@pages/Reservation.tsx";
 import LogIn from "@pages/LogIn.tsx";
-import EmployeeList from "./pages/employee/EmployeeList.tsx";
-import AdminSessions from "./pages/AdminSessions.tsx";
+import EmployeeList from "@pages/employee/EmployeeList.tsx";
+import AdminSessions from "@pages/AdminSessions.tsx";
+import FooterTroll from "@pages/FooterTroll.tsx";
 
 export default [
     {
@@ -17,6 +18,8 @@ export default [
             { path: "/login", element: <LogIn /> },
             { path: "/employees", element: <EmployeeList /> },
             { path: "/admin-sessions", element: <AdminSessions /> },
+            { path: "footer-troll" , element: <FooterTroll/>},
+            { path : "*", element: <App /> }
         ]
     }
 ]

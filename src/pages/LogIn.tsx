@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useAPI } from "@/hook/useAPI";
-import { useNavigate } from "react-router-dom";
 import {useSession} from "@/hook/useSession.ts";
 
 const LogIn: React.FC = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const { baseUrl } = useAPI();
     const { setSession } = useSession();
-    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -28,7 +26,7 @@ const LogIn: React.FC = () => {
             const data = await response.json();
             if (!response.ok) throw new Error(data.message);
             setSession(data.token);
-            navigate("/employees");
+            window.location.href = "/employees";
         } catch (error: any) {
             toast.error(error.message);
         }
@@ -47,7 +45,7 @@ const LogIn: React.FC = () => {
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="Enter your email"
+                                placeholder="Entrer votre email"
                                 className="input input-bordered w-full"
                                 value={formData.email}
                                 onChange={handleChange}
@@ -55,12 +53,12 @@ const LogIn: React.FC = () => {
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text">Mot de passe</span>
                             </label>
                             <input
                                 type="password"
                                 name="password"
-                                placeholder="Enter your password"
+                                placeholder="Entrer votre mot de passe"
                                 className="input input-bordered w-full"
                                 value={formData.password}
                                 onChange={handleChange}

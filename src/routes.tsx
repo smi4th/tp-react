@@ -2,7 +2,7 @@ import App from "./App.tsx";
 import Layout from "./layout/Layout.tsx";
 import Contact from "./pages/Contact.tsx";
 import Reservation from "./pages/Reservation.tsx";
-import LogIn from "./pages/employee/LogIn.tsx";
+import LogIn from "@pages/LogIn.tsx";
 import EmployeeList from "./pages/employee/EmployeeList.tsx";
 import AdminSessions from "./pages/AdminSessions.tsx";
 

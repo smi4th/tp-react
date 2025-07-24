@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {useAPI} from "@/hook/useAPI.ts";
+import { useAPI } from "@/hook/useAPI.ts";
+import { useSession } from "@/hook/useSession.ts";
 
 type EmployeeSearchBarProps = {
     onSuccess: (employees: any[]) => void;
@@ -8,13 +9,16 @@ type EmployeeSearchBarProps = {
 
 export default function EmployeeSearchBar({ onSuccess, onReset }: EmployeeSearchBarProps) {
     const [searchTerm, setSearchTerm] = useState("");
-    const {baseUrl} = useAPI();
+    const { baseUrl } = useAPI();
+    const { getToken } = useSession();
+
     const handleSearch = async (name: string) => {
         setSearchTerm(name);
-        if (name == "")  {
+        if (name === "") {
             onReset();
+            return;
         }
-        const token = localStorage.getItem("authToken");
+        const token = getToken();
         if (!token || !name.trim()) return;
 
         const myHeaders = new Headers();

@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import { jwtDecode } from "jwt-decode";
-import {useAPI} from "@/hook/useAPI.ts";
+import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import { useAPI } from "@/hook/useAPI";
+import { useNavigate } from "react-router-dom";
+import {useSession} from "@/hook/useSession.ts";
 
-const LogIn : React.FC = () => {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
-
-    const {baseUrl} = useAPI();
+const LogIn: React.FC = () => {
+    const [formData, setFormData] = useState({ email: "", password: "" });
+    const { baseUrl } = useAPI();
+    const { setSession } = useSession();
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -20,41 +19,19 @@ const LogIn : React.FC = () => {
     };
 
     async function submitData() {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify(formData);
-
-        const requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw
-        };
-        const logIn = async () => {
-            try {
-                const response = await fetch(baseUrl + "/auth/login", requestOptions);
-                const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(data.message);
-                }
-                return data;
-            } catch (error: any) {
-                console.error("Login error:", error.message);
-                toast.error(error.message);
-                throw error.message;
-            }
+        try {
+            const response = await fetch(baseUrl + "/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message);
+            setSession(data.token);
+            navigate("/employees");
+        } catch (error: any) {
+            toast.error(error.message);
         }
-
-        logIn().then((data) => {
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("expiresAt", String(Date.now() + 1000 * 30 * 30));
-
-            const decodedToken = jwtDecode(data.token);
-            localStorage.setItem("userDetails", JSON.stringify(decodedToken));
-
-            window.location.href = "/employees";
-        }).catch((_: any) => {})
-
     }
 
     return (
@@ -81,7 +58,7 @@ const LogIn : React.FC = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 name="password"
                                 placeholder="Enter your password"
                                 className="input input-bordered w-full"
@@ -106,4 +83,3 @@ const LogIn : React.FC = () => {
 }
 
 export default LogIn;
-

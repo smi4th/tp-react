@@ -2,11 +2,13 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import EmployeeAddModal from "./EmployeeAddModal.tsx";
 import { toast, ToastContainer } from "react-toastify";
-import {useAPI} from "@/hook/useAPI.ts";
+import { useAPI } from "@/hook/useAPI.ts";
+import { useSession } from "@/hook/useSession.ts";
 
 export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void }) {
     const [addModalEmployee, setAddModalEmployee] = useState(false);
-    const { baseUrl } = useAPI()
+    const { baseUrl } = useAPI();
+    const { getToken } = useSession();
 
     function createNewEmployee() {
         setAddModalEmployee(true);
@@ -14,8 +16,8 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
 
     return (
         <>
-            <button className="btn btn-primary btn-sm gap-2" onClick={createNewEmployee}>
-                <span className="text-lg">+</span> ADD NEW
+            <button className="btn btn-primary btn-sm gap-2 btn-square" onClick={createNewEmployee}>
+                <span className="text-lg text-white">+</span>
             </button>
 
             {addModalEmployee &&
@@ -48,7 +50,8 @@ export default function NewEmployeeButton({ onSuccess }: { onSuccess: () => void
                                 const userId = userData.user?.id ?? userData.id;
 
                                 // Create contract
-                                const token = localStorage.getItem("authToken");
+                                const token = getToken();
+                                if (!token) throw new Error("Session expirée. Merci de vous reconnecter.");
                                 const contractRes = await fetch(`${baseUrl}/adminEmployee/users/contracts`, {
                                     method: "POST",
                                     headers: {

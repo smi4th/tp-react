@@ -4,18 +4,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import SessionList from '../components/AdminSession/SessionList';
 import type { Session } from '../interfaces/session';
 import SessionForm from '../components/AdminSession/SessionForm';
-
-
-const apiUrl: string = import.meta.env.VITE_API_URL || "http://localhost:3000";
+import {useAPI} from "@/hook/useAPI.ts";
 
 export default function AdminSessions() {
     const [sessions, setSessions] = useState<Session[]>([]);
     const [sessionToEdit, setSessionToEdit] = useState<Session | null>(null);
     const modalRef = useRef<HTMLDialogElement>(null);
+    const {baseUrl} = useAPI()
 
     const fetchSessions = async () => {
         try {
-            const response = await fetch(apiUrl + "/sessions");
+            const response = await fetch(baseUrl + "/sessions");
             if (!response.ok) {
                 throw new Error('Failed to fetch sessions');
             }
@@ -52,7 +51,7 @@ export default function AdminSessions() {
 
     const handleDeleteSession = (session: Session) => {
         if (window.confirm(`Voulez-vous vraiment supprimer la session "${session.name}" ?`)) {
-            fetch(`${apiUrl}/sessions/${session.id}`, {
+            fetch(`${baseUrl}/sessions/${session.id}`, {
                 method: 'DELETE',
             })
                 .then(response => {

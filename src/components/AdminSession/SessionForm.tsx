@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import type { Session, TimeSlot } from '@interfaces/session.ts';
+import {useAPI} from "@/hook/useAPI.ts";
 
 interface SessionFormProps {
     onSessionAdded: (session: Session) => void;
@@ -20,7 +21,7 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
     const [pictures, setPictures] = useState<string[]>(['']);
     const [timeSlots, setTimeSlots] = useState<Partial<TimeSlot>[]>([{ dayOfWeek: 'Lundi', startTime: '10:00' }]);
     const [error, setError] = useState<string | null>(null);
-    const apiUrl = "http://localhost:3000";
+    const { baseUrl } = useAPI();
 
     useEffect(() => {
         if (sessionToEdit) {
@@ -124,7 +125,7 @@ const SessionForm: React.FC<SessionFormProps> = ({ onSessionAdded, onSessionUpda
         }
 
         try {
-            const url = sessionToEdit ? `${apiUrl}/sessions/${sessionToEdit.id}` : `${apiUrl}/sessions`;
+            const url = sessionToEdit ? `${baseUrl}/sessions/${sessionToEdit.id}` : `${baseUrl}/sessions`;
             const method = sessionToEdit ? 'PUT' : 'POST';
 
             const response = await fetch(url, {

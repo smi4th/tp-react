@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+import {useAPI} from "@/hook/useAPI.ts";
 
 interface ReservationFormData {
     name: string;
@@ -17,40 +16,41 @@ type Toasted = {
 }
 
 const FourthStep: React.FC<ReservationFormData> = (props) => {
-    const [showToast, setShowToast] = useState<Toasted>({
+    const [showToast, setShowToast] = useState<Boolean>(false);
+    const [toast, setToast] = useState<Toasted>({
         message: "",
         type: "success"
     });
+    const { baseUrl } = useAPI();
 
     const handleConfirm = () => {
 
         const createReservation = async () => {
             try {
-                const response = await fetch(apiUrl + "/reservations", {
+                const response = await fetch(baseUrl + "/reservations", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(props),
                 });
                 if (!response.ok) {
-                    throw new Error("Failed to create reservation");
+                    throw new Error("Failed to create formReservation");
                 }
-                setShowToast({
+                setToast({
                     message: "Inscription validée. Vous recevrez un email de confirmation.",
                     type: "success"
                 });
+                setShowToast(true);
 
             } catch (error) {
-                setShowToast({
+                setToast({
                     message: "Erreur lors de la création de la réservation. Veuillez réessayer.",
                     type: "error"
                 })
-                console.error("Error creating reservation:", error);
+                setShowToast(true);
+                console.error("Error creating formReservation:", error);
 
             }finally {
-                setTimeout(() => setShowToast({
-                    message: "",
-                    type: "success"
-                }), 10000);
+                setTimeout(() => setShowToast(false), 10000);
             }
         };
         createReservation();
@@ -97,7 +97,7 @@ const FourthStep: React.FC<ReservationFormData> = (props) => {
                 </button>
             </div>
             {showToast && (
-                <Toaster message={showToast.message} type={showToast.type} />
+                <Toaster message={toast.message} type={toast.type} />
             )}
         </div>
     );

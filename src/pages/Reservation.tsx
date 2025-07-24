@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import Steps from "@components/reservation/Steps.tsx";
+import Steps from "@components/formReservation/Steps.tsx";
 import { useMultiStepForm } from "@/hook/useMultiStepForm.ts";
-import FirstStep from "@components/reservation/FirstStep.tsx";
-import SecondStep from "@components/reservation/SecondStep.tsx";
-import ThirdStep from "@components/reservation/ThirdStep.tsx";
-import FourthStep from "@components/reservation/FourthStep.tsx";
+import FirstStep from "@components/formReservation/FirstStep.tsx";
+import SecondStep from "@components/formReservation/SecondStep.tsx";
+import ThirdStep from "@components/formReservation/ThirdStep.tsx";
+import FourthStep from "@components/formReservation/FourthStep.tsx";
 
 const Reservation: React.FC = () => {
 
@@ -34,7 +34,8 @@ const Reservation: React.FC = () => {
     const {
         currentStep,
         step,
-        goTo
+        next,
+        previous
     } = useMultiStepForm(steps);
 
     return (
@@ -46,15 +47,25 @@ const Reservation: React.FC = () => {
                     </form>
 
                 <div className="join">
-                    {steps.map((_, index) => (
-                        <button
-                            key={index}
-                            className={`join-item btn ${currentStep === index ? "btn-active" : ""}`}
-                            onClick={() => goTo(index)}
-                        >
-                            {index + 1}
-                        </button>
-                    ))}
+                    <button
+                        type="button"
+                        className="join-item btn"
+                        onClick={previous}
+                        disabled={currentStep === 0}
+                    >
+                        «
+                    </button>
+                    <button className="join-item btn">
+                        Page {currentStep + 1}
+                    </button>
+                    <button
+                        type="button"
+                        className="join-item btn"
+                        onClick={next}
+                        disabled={currentStep === steps.length - 1}
+                    >
+                        »
+                    </button>
                 </div>
             </div>
         </div>

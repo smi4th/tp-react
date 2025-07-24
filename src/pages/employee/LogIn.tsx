@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { jwtDecode } from "jwt-decode";
-
-
-const apiUrl : string = import.meta.env.API_URL || "http://localhost:3000";
-
+import {useAPI} from "@/hook/useAPI.ts";
 
 const LogIn : React.FC = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
+
+    const {baseUrl} = useAPI();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -33,7 +32,7 @@ const LogIn : React.FC = () => {
         };
         const logIn = async () => {
             try {
-                const response = await fetch(apiUrl + "/auth/login", requestOptions);
+                const response = await fetch(baseUrl + "/auth/login", requestOptions);
                 const data = await response.json();
                 if (!response.ok) {
                     throw new Error(data.message);

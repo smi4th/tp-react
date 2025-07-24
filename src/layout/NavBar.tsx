@@ -1,4 +1,3 @@
-import styles from "./layout.module.css"
 import brandLogo from "@assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -13,7 +12,6 @@ interface UserDetails {
 export default function NavBar() {
     const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const storedUserDetails = localStorage.getItem("userDetails");
@@ -43,44 +41,45 @@ export default function NavBar() {
     };
 
     return (
-        <>
-            <div className={styles.mainNavBar}>
-                <img src={brandLogo} className={styles.logo} alt="brand-logo"></img>
-                <div className={styles.brandName}>
-                    <Link to="/">LockIn</Link>
-                </div>
-                <div className={styles.allTitles}>
-                    <div className={styles.navBarTitles}>
-                        <Link to="/">Home</Link>
-                    </div>
-                    <div className={styles.navBarTitles}>
-                        <Link to="/contact">Contact</Link>
-                    </div>
-                    <div className={styles.navBarTitles}>
-                        <Link to="/reservation">Réserver</Link>
-                    </div>
-                    {userDetails && (userDetails.role === 'admin' || userDetails.role === 'superadmin') && (
-                        <div className={styles.navBarTitles}>
-                            <Link to="/employees">Employees</Link>
-                        </div>
-                    )}
-                    {userDetails && (userDetails.role === 'admin' || userDetails.role === 'superadmin') && (
-                        <div className={styles.navBarTitles}>
-                            <Link to="/admin-sessions">Sessions</Link>
-                        </div>
-                    )}
-                    {!userDetails ? (
-                        <div className={styles.navBarTitles}>
-                            <Link to="/login">Login</Link>
-                        </div>
-                    ) : (
-                        <div className={styles.navBarTitles}>
-                            <button onClick={handleLogout} className="cursor-pointer">Logout</button>
-                        </div>
-                    )}
-                </div>
+        <div className="flex justify-between bg-gray-700 font-header w-full h-28 border-b-[10px] border-primary relative">
+            <img
+                src={brandLogo}
+                alt="brand-logo"
+                className="absolute w-[200px] h-[160px] bottom-[-50px] left-[55px]"
+            />
+            <div className="text-white font-pirata pl-6 text-[2.5rem] flex items-center">
+                <Link to="/" className="hover:underline">LockIn</Link>
             </div>
-
-        </>
+            <div className="flex justify-around items-center w-full">
+                <div className="font-iceland text-white text-[1.5rem] mx-4">
+                    <Link to="/" className="hover:underline">Home</Link>
+                </div>
+                <div className="font-iceland text-white text-[1.5rem] mx-4">
+                    <Link to="/contact" className="hover:underline">Contact</Link>
+                </div>
+                <div className="font-iceland text-white text-[1.5rem] mx-4">
+                    <Link to="/reservation" className="hover:underline">Réserver</Link>
+                </div>
+                {userDetails && (userDetails.role === 'admin' || userDetails.role === 'superadmin') && (
+                    <>
+                        <div className="font-iceland text-white text-[1.5rem] mx-4">
+                            <Link to="/employees" className="hover:underline">Employees</Link>
+                        </div>
+                        <div className="font-iceland text-white text-[1.5rem] mx-4">
+                            <Link to="/admin-sessions" className="hover:underline">Sessions</Link>
+                        </div>
+                    </>
+                )}
+                {!userDetails ? (
+                    <div className="font-iceland text-white text-[1.5rem] mx-4">
+                        <Link to="/login" className="hover:underline">Login</Link>
+                    </div>
+                ) : (
+                    <div className="font-iceland text-white text-[1.5rem] mx-4">
+                        <button onClick={handleLogout} className="cursor-pointer hover:underline bg-transparent border-0">Logout</button>
+                    </div>
+                )}
+            </div>
+        </div>
     )
 }

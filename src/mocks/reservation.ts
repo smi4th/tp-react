@@ -10,7 +10,7 @@ const reservation = {
 };
 
 export function mockReservation() {
-    return http.post("*/api/v1/reservation", async () => {
+    return http.post("*/api/v1/formReservation", async () => {
         await delay(300); // simulate network delay
         return HttpResponse.json(reservation);
     });

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import type {StepProps} from "@interfaces/form.ts";
-
-const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+import {useAPI} from "@/hook/useAPI.ts";
 
 type Slot = {
     id: number;
@@ -19,6 +18,7 @@ type Slot = {
 
 const SecondStep: React.FC<StepProps> = ({formData, setFormData}) => {
     const [slotTime, setSlotTime] = useState<Slot[]>([]);
+    const {baseUrl} = useAPI()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -31,7 +31,7 @@ const SecondStep: React.FC<StepProps> = ({formData, setFormData}) => {
     useEffect(() => {
         const fetchAvailableSlots = async () => {
             try {
-                const response = await fetch(`${apiUrl}/slots`);
+                const response = await fetch(`${baseUrl}/slots`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch available slots");
                 }

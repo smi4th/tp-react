@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useAPI} from "@/hook/useAPI.ts";
 
 type EmployeeSearchBarProps = {
     onSuccess: (employees: any[]) => void;
@@ -7,7 +8,7 @@ type EmployeeSearchBarProps = {
 
 export default function EmployeeSearchBar({ onSuccess, onReset }: EmployeeSearchBarProps) {
     const [searchTerm, setSearchTerm] = useState("");
-
+    const {baseUrl} = useAPI();
     const handleSearch = async (name: string) => {
         setSearchTerm(name);
         if (name == "")  {
@@ -21,7 +22,7 @@ export default function EmployeeSearchBar({ onSuccess, onReset }: EmployeeSearch
 
         try {
             const response = await fetch(
-                `http://localhost:3000/adminEmployee/users/search?name=${encodeURIComponent(name)}`,
+                `${baseUrl}/adminEmployee/users/search?name=${encodeURIComponent(name)}`,
                 {
                     method: "GET",
                     headers: myHeaders,

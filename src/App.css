@@ -1,13 +1,13 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Amarante&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap');
+
 @plugin "daisyui" {
     themes: light --default;
 }
-/*@theme {*/
-/*  --color-online: oklch(65% 0.3 120); !* Vert doux *!*/
-/*  --color-away: oklch(85% 0.3 80);   !* Orange clair *!*/
-/*  --color-dnd: oklch(55% 0.35 20);  !* Rouge foncé *!*/
-/*  --color-offline: oklch(90% 0 0);  !* Gris clair *!*/
-/*}*/
+
+@theme {
+    --font-Amarante: 'Amarante', sans-serif;
+}
 
 @plugin "daisyui/theme" {
   name: "light";

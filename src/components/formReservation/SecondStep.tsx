@@ -31,12 +31,13 @@ const SecondStep: React.FC<StepProps> = ({formData, setFormData}) => {
     useEffect(() => {
         const fetchAvailableSlots = async () => {
             try {
-                const response = await fetch(`${baseUrl}/slots`);
+                const response = await fetch(`${baseUrl}/sessions`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch available slots");
                 }
                 const data = await response.json();
                 setSlotTime(data);
+                console.log("data : ",data);
             } catch (error) {
                 console.error("Error fetching available slots:", error);
             }

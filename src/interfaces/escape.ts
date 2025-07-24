@@ -15,6 +15,36 @@ export interface escapeSession {
     color : string;
 }
 
+export interface Room {
+    id: number;
+    name: string;
+    description: string;
+    tags: string[];
+    duration: number;
+    price: number;
+    minParticipants: number;
+    maxParticipants: number;
+    difficulty: number;
+    pictures: string[];
+    timeSlots?: TimeSlot[];
+}
+
+export type Reservation = {
+    id: number;
+    date: string;
+    customerEmail: string;
+    participants: number;
+};
+
+export type TimeSlot = {
+    id: number;
+    dayOfWeek: string;
+    startTime: string;
+    endTime: string;
+    reservations: Reservation[];
+};
+
+
 export interface Review {
 
     id: string;

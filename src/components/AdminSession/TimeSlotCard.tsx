@@ -7,7 +7,7 @@ interface TimeSlotCardProps {
 
 const TimeSlotCard: React.FC<TimeSlotCardProps> = ({ timeSlot }) => {
     return (
-        <div className={`p-2 border rounded ${timeSlot.isBooked ? 'bg-red-200' : 'bg-green-200'}`}>
+        <div className={`p-2 shadow-lg bg-white rounded`}>
             <p>Jour: {timeSlot.dayOfWeek}</p>
             <p>Début: {timeSlot.startTime}</p>
             <p>Fin: {timeSlot.endTime}</p>

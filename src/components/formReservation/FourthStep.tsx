@@ -1,21 +1,12 @@
 import React, { useState } from "react";
 import {useAPI} from "@/hook/useAPI.ts";
-
-interface ReservationFormData {
-    name: string;
-    customerEmail: string;
-    date: string;
-    time: string;
-    guests: string;
-    timeSlotId: string;
-}
-
+import type {FormReservation} from "@interfaces/form.ts";
 type Toasted = {
     message: string;
     type: "success" | "error";
 }
 
-const FourthStep: React.FC<ReservationFormData> = (props) => {
+const FourthStep: React.FC<FormReservation> = (props) => {
     const [showToast, setShowToast] = useState<Boolean>(false);
     const [toast, setToast] = useState<Toasted>({
         message: "",
@@ -30,7 +21,13 @@ const FourthStep: React.FC<ReservationFormData> = (props) => {
                 const response = await fetch(baseUrl + "/reservations", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(props),
+                    body: JSON.stringify({
+                        timeSlotId: props.idSlot,
+                        date: props.dateSlot,
+                        customerEmail: props.email,
+                        guests: props.guests,
+                        name: props.name
+                    }),
                 });
                 if (!response.ok) {
                     throw new Error("Failed to create formReservation");
@@ -47,6 +44,8 @@ const FourthStep: React.FC<ReservationFormData> = (props) => {
                     type: "error"
                 })
                 setShowToast(true);
+                console.log(props);
+
                 console.error("Error creating formReservation:", error);
 
             }finally {
@@ -69,15 +68,11 @@ const FourthStep: React.FC<ReservationFormData> = (props) => {
                         </tr>
                         <tr>
                             <td className="font-bold">Email:</td>
-                            <td>{props.customerEmail}</td>
+                            <td>{props.email}</td>
                         </tr>
                         <tr>
                             <td className="font-bold">Date:</td>
-                            <td>{props.date}</td>
-                        </tr>
-                        <tr>
-                            <td className="font-bold">Heure:</td>
-                            <td>{props.time}</td>
+                            <td>{props.dateSlot}</td>
                         </tr>
                         <tr>
                             <td className="font-bold">Nombre de participants:</td>

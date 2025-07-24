@@ -1,15 +1,15 @@
 import React from "react";
 
-export interface FormData {
+export interface FormReservation {
     name: string;
     email: string;
     date: string;
-    time: string;
     guests: string;
     idSlot: string;
+    dateSlot: string | null;
 }
 
 export interface StepProps {
-    formData: FormData;
-    setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+    formData: FormReservation;
+    setFormData: React.Dispatch<React.SetStateAction<FormReservation>>;
 }

@@ -5,16 +5,17 @@ import FirstStep from "@components/formReservation/FirstStep.tsx";
 import SecondStep from "@components/formReservation/SecondStep.tsx";
 import ThirdStep from "@components/formReservation/ThirdStep.tsx";
 import FourthStep from "@components/formReservation/FourthStep.tsx";
+import type {FormReservation} from "@interfaces/form.ts";
 
 const Reservation: React.FC = () => {
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormReservation>({
         name: "",
         email: "",
         date: "",
-        time: "",
         guests: "",
         idSlot: "",
+        dateSlot: null
     });
 
     const steps = [
@@ -23,11 +24,11 @@ const Reservation: React.FC = () => {
         <ThirdStep formData={formData} setFormData={setFormData} />,
         <FourthStep
             name={formData.name}
-            customerEmail={formData.email}
+            email={formData.email}
             date={formData.date}
-            time={formData.time}
             guests={formData.guests}
-            timeSlotId={formData.idSlot}
+            idSlot={formData.idSlot}
+            dateSlot={formData.dateSlot}
         />
     ];
 

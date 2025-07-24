@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
+import cat1 from '@/assets/cat-1.jpg';
+import cat2 from '@/assets/cat-2.jpg';
+import cat3 from '@/assets/cat-3.jpg';
+import cat4 from '@/assets/cat-4.jpg';
+import cat5 from '@/assets/cat-5.jpg';
 
-const catImages = [
-    'src/assets/cat-1.jpg',
-    'src/assets/cat-2.jpg',
-    'src/assets/cat-3.jpg',
-    'src/assets/cat-4.jpg',
-    'src/assets/cat-5.jpg'
-];
+const catImages = [cat1, cat2, cat3, cat4, cat5];
 
 const Contact: React.FC = () => {
     const [toastMessage, setToastMessage] = useState<string | null>(null);

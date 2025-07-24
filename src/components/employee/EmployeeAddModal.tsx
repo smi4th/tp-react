@@ -24,11 +24,6 @@ const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }
 
     const [dateError, setDateError] = useState<string | null>(null);
 
-    const formatDate = (str: string) => {
-        const [day, month, year] = str.split("/");
-        return `${year}-${month}-${day}`;
-    };
-
     const isValidDateOrder = (start: string, end: string) => {
         if (!start || !end) return true;
         const startParts = start.split("/").reverse().join("-");
@@ -85,14 +80,12 @@ const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }
             return;
         }
 
-        const formattedData = {
+        const formattedData: EmployeeFormDataFormatted = {
             ...formData,
             contract: {
                 ...formData.contract,
-                startDate: formatDate(formData.contract.startDate),
-                endDate: formData.contract.endDate
-                    ? formatDate(formData.contract.endDate)
-                    : null,
+                startDate: formData.contract.startDate,
+                endDate: formData.contract.endDate || null,
             },
         };
 

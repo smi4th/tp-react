@@ -8,9 +8,10 @@ import EmployeeSearchBar from "@components/employee/EmployeeSearchBar.tsx";
 const apiUrl: string = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export default function EmployeeList() {
-    const [employees, setEmployees] = useState([]);
-    const [viewModalEmployee, setViewModalEmployee] = useState<any | null>(null);
-    const [editModalEmployee, setEditModalEmployee] = useState<any | null>(null);
+    const [employees, setEmployees] = useState<Employee[]>([]);
+    const [viewModalEmployee, setViewModalEmployee] = useState<Employee | null>(null);
+    const [editModalEmployee, setEditModalEmployee] = useState<Employee | null>(null);
+
     const [page, setPage] = useState<number>(1)
     let totalPageEmployees = useRef(0)
     let totalEmployees = useRef(0)
@@ -60,7 +61,7 @@ export default function EmployeeList() {
     };
 
 
-    const handleEdit = async (id: string, updatedData: any) => {
+    const handleEdit = async (id: number, updatedData: any) => {
         const token = localStorage.getItem("authToken");
         try {
             const res = await fetch(`${apiUrl}/adminEmployee/users/${id}`, {
@@ -225,7 +226,7 @@ export default function EmployeeList() {
                     <EmployeeEditModal
                         employee={editModalEmployee}
                         onClose={() => setEditModalEmployee(null)}
-                        onUpdate={(data) => handleEdit(editModalEmployee.id, data)}
+                        onUpdate={(data) => handleEdit(editModalEmployee!.id, data)}
                     />,
                     document.body
                 )}

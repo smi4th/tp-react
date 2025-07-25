@@ -1,6 +1,7 @@
 import brandLogo from "@assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import {useSession} from "@/hook/useSession.ts";
+import ThemeToggle from "@/layout/ThemeToggle.tsx";
 
 export default function NavBar() {
     const { userDetails, clearSession } = useSession();
@@ -42,17 +43,19 @@ export default function NavBar() {
                     </>
                 )}
                 {!userDetails ? (
-                    <div className="text-white text-[1.5rem] mx-4">
+                    <div className="text-white text-[1.5rem] mx-4 flex items-center justify-between gap-x-4">
                         <Link to="/login" className="hover:underline">Se connecter</Link>
+                        <ThemeToggle />
                     </div>
                 ) : (
-                    <div className="text-white text-[1.5rem] mx-4">
+                    <div className="text-white text-[1.5rem] mx-4 flex items-center justify-between gap-x-4">
                         <button
                             onClick={handleLogout}
                             className="cursor-pointer hover:underline bg-transparent border-0"
                         >
                             Déconnexion
                         </button>
+                        <ThemeToggle />
                     </div>
                 )}
             </div>

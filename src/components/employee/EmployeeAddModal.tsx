@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import type {EmployeeAddFormData} from "@components/employee/models/employee-add-form-data.ts";
 
+interface EmployeeFormDataFormatted extends Omit<EmployeeAddFormData, "contract"> {
+    contract: Omit<EmployeeAddFormData["contract"], "startDate" | "endDate"> & {
+        startDate: string;
+        endDate: string | null;
+    };
+}
 interface EmployeeAddModalProps {
     onClose: () => void;
-    onSubmit: (data: any) => void;
+    onSubmit: (data: EmployeeFormDataFormatted) => void;
 }
-
 const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }) => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<EmployeeAddFormData>({
         firstname: "",
         lastname: "",
         email: "",
@@ -22,12 +28,8 @@ const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }
         },
     });
 
-    const [dateError, setDateError] = useState<string | null>(null);
 
-    const formatDate = (str: string) => {
-        const [day, month, year] = str.split("/");
-        return `${year}-${month}-${day}`;
-    };
+    const [dateError, setDateError] = useState<string | null>(null);
 
     const isValidDateOrder = (start: string, end: string) => {
         if (!start || !end) return true;
@@ -89,10 +91,8 @@ const EmployeeAddModal: React.FC<EmployeeAddModalProps> = ({ onClose, onSubmit }
             ...formData,
             contract: {
                 ...formData.contract,
-                startDate: formatDate(formData.contract.startDate),
-                endDate: formData.contract.endDate
-                    ? formatDate(formData.contract.endDate)
-                    : null,
+                startDate: formData.contract.startDate,
+                endDate: formData.contract.endDate || null,
             },
         };
 

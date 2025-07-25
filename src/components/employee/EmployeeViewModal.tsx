@@ -1,4 +1,9 @@
-export default function EmployeeViewModal({onClose, employee}: any) {
+interface EmployeeViewModalProps {
+    employee: Employee;
+    onClose: () => void;
+}
+
+export default function EmployeeViewModal({ onClose, employee }: EmployeeViewModalProps) {
     return (
         <>
             <dialog className="modal modal-open">

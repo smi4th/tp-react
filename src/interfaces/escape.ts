@@ -1,19 +1,19 @@
 export interface escapeSession {
-
-    id: string;
-    durationSeconds : number;
-    isActive: boolean;
-    difficulty: number;
-    max_players : number;
-    min_players : number;
+    id: number;
     name: string;
-    images: string[];
     description: string;
+    difficulty: number;
+    duration: number;
+    minParticipants: number;
+    maxParticipants: number;
+    price: number;
+    pictures: string[];
     tags: string[];
-    isVr: boolean;
-    isCoop: boolean;
-    color : string;
+    isVr?: boolean;
+    isCoop?: boolean;
+    color?: string;
 }
+
 
 export interface Room {
     id: number;

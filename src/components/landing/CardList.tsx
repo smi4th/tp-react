@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 
 interface CardDisplay {
     card: React.ComponentType<any>;
@@ -8,7 +8,8 @@ interface CardDisplay {
 
 const CardList : React.FC<CardDisplay> = ({ card: CardComponent, apiUrl }) => {
 
-    const [allCards, setAllCards] = React.useState<[] | null>(null);
+    const [allCards, setAllCards] = useState<[]>([]);
+
 
     useEffect(() => {
         const getAllCards = async () => {
@@ -22,6 +23,7 @@ const CardList : React.FC<CardDisplay> = ({ card: CardComponent, apiUrl }) => {
         getAllCards()
             .then((data) => {
                 setAllCards(data);
+                console.log(data);
             })
             .catch((error : Error) => {
                 console.error("Erreur lors de la récupération des sessions d'évasion");
@@ -38,9 +40,15 @@ const CardList : React.FC<CardDisplay> = ({ card: CardComponent, apiUrl }) => {
 
     return (
         <div className="w-full grid grid-cols-3 gap-8 my-8 mx-auto overflow-hidden">
-            {allCards.map((session: any, index: number) => (
-                <CardComponent key={index} {...session} />
-            ))}
+            {
+                allCards.length === 0 ? (
+                    <span className="text-center text-gray-500 col-span-3">Aucune session d'évasion disponible pour le moment.</span>
+                ) : (
+                    allCards.map((session: any, index: number) => (
+                        <CardComponent key={index} {...session} />
+                    ))
+                )
+            }
         </div>
     );
 }

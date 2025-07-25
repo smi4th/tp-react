@@ -17,6 +17,13 @@ const dayOfWeekMap: Record<string, number> = {
     "Samedi": 6,
 };
 
+function toLocalISODate(d: Date) {
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 const SecondStep: React.FC<StepProps> = ({ formData, setFormData }) => {
 
     const [rooms, setRooms] = useState<Room[]>([]);
@@ -85,39 +92,51 @@ const SecondStep: React.FC<StepProps> = ({ formData, setFormData }) => {
             return;
         }
         const slotEvents: any[] = [];
-        const reservationEvents: any[] = [];
+        const daysToShow = 14;
+
         for (const slot of timeSlots) {
-            slotEvents.push({
-                id: `slot-${slot.id}`,
-                groupId: slot.id,
-                title: "Disponible",
-                daysOfWeek: [dayOfWeekMap[slot.dayOfWeek]],
-                startTime: slot.startTime,
-                endTime: slot.endTime,
-                color: selectedEventId === String(slot.id) ? "#10b981" : "#2563eb",
-                editable: false,
-                extendedProps: {
-                    slotId: slot.id,
-                    isReserved: false,
-                },
-            });
-            for (const reservation of slot.reservations) {
-                reservationEvents.push({
-                    id: `res-${reservation.id}`,
-                    groupId: slot.id,
-                    title: "Réservé",
-                    start: `${reservation.date}T${slot.startTime.length === 5 ? slot.startTime + ':00' : slot.startTime}`,
-                    end: `${reservation.date}T${slot.endTime.length === 5 ? slot.endTime + ':00' : slot.endTime}`,
-                    color: "#dc2626",
-                    editable: false,
-                    extendedProps: {
-                        slotId: slot.id,
-                        isReserved: true,
-                    },
-                });
+            const reservedDates = new Set(slot.reservations.map(r => r.date));
+            for (let offset = 0; offset < daysToShow; offset++) {
+                const now = new Date();
+                now.setHours(0,0,0,0);
+                const d = new Date(now);
+                d.setDate(d.getDate() + offset);
+
+                if (d.getDay() === dayOfWeekMap[slot.dayOfWeek]) {
+                    const isoDate = toLocalISODate(d); // <<< Correction importante ici !
+                    if (reservedDates.has(isoDate)) {
+                        slotEvents.push({
+                            id: `res-${slot.id}-${isoDate}`,
+                            groupId: slot.id,
+                            title: "Réservé",
+                            start: `${isoDate}T${slot.startTime.length === 5 ? slot.startTime + ':00' : slot.startTime}`,
+                            end: `${isoDate}T${slot.endTime.length === 5 ? slot.endTime + ':00' : slot.endTime}`,
+                            color: "#dc2626",
+                            editable: false,
+                            extendedProps: {
+                                slotId: slot.id,
+                                isReserved: true,
+                            },
+                        });
+                    } else {
+                        slotEvents.push({
+                            id: `slot-${slot.id}-${isoDate}`,
+                            groupId: slot.id,
+                            title: "Disponible",
+                            start: `${isoDate}T${slot.startTime.length === 5 ? slot.startTime + ':00' : slot.startTime}`,
+                            end: `${isoDate}T${slot.endTime.length === 5 ? slot.endTime + ':00' : slot.endTime}`,
+                            color: selectedEventId === String(slot.id) ? "#10b981" : "#2563eb",
+                            editable: false,
+                            extendedProps: {
+                                slotId: slot.id,
+                                isReserved: false,
+                            },
+                        });
+                    }
+                }
             }
         }
-        setEvents([...slotEvents, ...reservationEvents]);
+        setEvents(slotEvents);
     }, [timeSlots, selectedRoom, selectedEventId]);
 
     return (
